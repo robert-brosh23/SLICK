@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://cx12wbepve0ru"]
+
+[ext_resource type="Script" uid="uid://mmari8fjtnwk" path="res://player/player4/player_4.gd" id="1_ktmdc"]
+[ext_resource type="Texture2D" uid="uid://keqfsbr3dcby" path="res://icon.svg" id="2_daqvd"]
+[ext_resource type="PackedScene" uid="uid://rbpv2yyecy83" path="res://util/state_machine/state_matchine.tscn" id="3_afben"]
+[ext_resource type="PackedScene" uid="uid://fpc4vtdwsnr8" path="res://util/state_machine/state/state.tscn" id="4_nfto1"]
+[ext_resource type="Script" uid="uid://c2b8r851478jb" path="res://player/player4/state/SkateState.gd" id="5_n1sff"]
+[ext_resource type="Script" uid="uid://ut4jpgeb3pyv" path="res://player/player4/state/ChargeState.gd" id="6_afben"]
+[ext_resource type="Script" uid="uid://bhnvadg4nible" path="res://player/player4/rotation_counter.gd" id="7_nfto1"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rkbax"]
+radius = 16.0
+height = 32.0
+
+[node name="Player4" type="CharacterBody2D" unique_id=1850284369]
+script = ExtResource("1_ktmdc")
+
+[node name="PlayerAnimator" type="Node2D" parent="." unique_id=681185154]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerAnimator" unique_id=838241679]
+root_node = NodePath("../..")
+
+[node name="PlayerSprite" type="Sprite2D" parent="PlayerAnimator" unique_id=1928952905]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_daqvd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=660935521]
+shape = SubResource("CapsuleShape2D_rkbax")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1643228599]
+zoom = Vector2(0.5, 0.5)
+
+[node name="StateMatchine" parent="." unique_id=1358922989 node_paths=PackedStringArray("ready_state") instance=ExtResource("3_afben")]
+ready_state = NodePath("SkateState")
+
+[node name="SkateState" parent="StateMatchine" unique_id=1402343438 node_paths=PackedStringArray("player") instance=ExtResource("4_nfto1")]
+script = ExtResource("5_n1sff")
+player = NodePath("../..")
+
+[node name="ChargeState" parent="StateMatchine" unique_id=1836642914 node_paths=PackedStringArray("player", "charge_bar") instance=ExtResource("4_nfto1")]
+script = ExtResource("6_afben")
+player = NodePath("../..")
+charge_bar = NodePath("../../Node2D/ChargeBar")
+
+[node name="Node2D" type="Node2D" parent="." unique_id=995140130]
+script = ExtResource("7_nfto1")
+
+[node name="ChargeBar" type="ProgressBar" parent="Node2D" unique_id=1414149011]
+offset_left = -15.0
+offset_top = -25.0
+offset_right = 15.0
+offset_bottom = -21.0
+size_flags_horizontal = 4
+max_value = 1200.0
+show_percentage = false
