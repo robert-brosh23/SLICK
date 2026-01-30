@@ -1,8 +1,8 @@
 class_name ChargeState
 extends State
 
-const CHARGE_SPEED := 1000.0
-const MAX_CHARGE := 1200.0
+const CHARGE_SPEED := 500.0
+const MAX_CHARGE := 600.0
 const CHARGE_MANUVERABILITY_MAX := 5.0
 const CHARGE_MANUVERABILITY_DECAY := 0.98
 const BRAKE_CHARGE_FRICTION := .96

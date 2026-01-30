@@ -7,10 +7,11 @@
 [ext_resource type="Script" uid="uid://c2b8r851478jb" path="res://player/player4/state/SkateState.gd" id="5_n1sff"]
 [ext_resource type="Script" uid="uid://ut4jpgeb3pyv" path="res://player/player4/state/ChargeState.gd" id="6_afben"]
 [ext_resource type="Script" uid="uid://bhnvadg4nible" path="res://player/player4/rotation_counter.gd" id="7_nfto1"]
+[ext_resource type="FontFile" uid="uid://c6lfcmqrq1huc" path="res://util/fonts/m3x6.ttf" id="8_n1sff"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rkbax"]
-radius = 16.0
-height = 32.0
+radius = 7.0
+height = 16.0
 
 [node name="Player4" type="CharacterBody2D" unique_id=1850284369]
 script = ExtResource("1_ktmdc")
@@ -21,14 +22,13 @@ script = ExtResource("1_ktmdc")
 root_node = NodePath("../..")
 
 [node name="PlayerSprite" type="Sprite2D" parent="PlayerAnimator" unique_id=1928952905]
-scale = Vector2(0.25, 0.25)
+scale = Vector2(0.125, 0.125)
 texture = ExtResource("2_daqvd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=660935521]
 shape = SubResource("CapsuleShape2D_rkbax")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1643228599]
-zoom = Vector2(0.5, 0.5)
 
 [node name="StateMatchine" parent="." unique_id=1358922989 node_paths=PackedStringArray("ready_state") instance=ExtResource("3_afben")]
 ready_state = NodePath("SkateState")
@@ -40,16 +40,26 @@ player = NodePath("../..")
 [node name="ChargeState" parent="StateMatchine" unique_id=1836642914 node_paths=PackedStringArray("player", "charge_bar") instance=ExtResource("4_nfto1")]
 script = ExtResource("6_afben")
 player = NodePath("../..")
-charge_bar = NodePath("../../Node2D/ChargeBar")
+charge_bar = NodePath("../../Node2D/VBoxContainer/ChargeBar")
 
 [node name="Node2D" type="Node2D" parent="." unique_id=995140130]
 script = ExtResource("7_nfto1")
 
-[node name="ChargeBar" type="ProgressBar" parent="Node2D" unique_id=1414149011]
+[node name="VBoxContainer" type="VBoxContainer" parent="Node2D" unique_id=709744095]
 offset_left = -15.0
-offset_top = -25.0
+offset_top = -30.0
 offset_right = 15.0
-offset_bottom = -21.0
-size_flags_horizontal = 4
+offset_bottom = -12.0
+theme_override_constants/separation = 1
+
+[node name="Label" type="Label" parent="Node2D/VBoxContainer" unique_id=606390352]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("8_n1sff")
+theme_override_font_sizes/font_size = 16
+text = "Boost"
+horizontal_alignment = 1
+
+[node name="ChargeBar" type="ProgressBar" parent="Node2D/VBoxContainer" unique_id=1414149011]
+layout_mode = 2
 max_value = 1200.0
 show_percentage = false
