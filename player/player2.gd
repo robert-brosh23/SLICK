@@ -1,33 +1,31 @@
-# Fairly basic controller, can stop and start with shift
+# Kind of combines the boost concept robert mentioned with a stopping mechanic.
+# Basic idea is that hitting shift 'kicks off' so it can be used for stopping and starting.
 
 extends CharacterBody2D
 
-const MAXSPEED_BASE := 300.0
+const MAXSPEED_BASE := 3000.0
 const ACCEL_BASE := 60.0
 const FRICTION_BASE := 150.0
-const MAXSPEED_STOP := 200.0
-const ACCEL_STOP := 6000.0
-const FRICTION_STOP := 1000.0
+const KICK_BOOST := 30000.0
+const KICK_FRICTION := 300000.0
 
-var maxSpeed : float
+var maxSpeed := MAXSPEED_BASE
 var friction : float
 var acceleration : float
 var input_dir : Vector2
 
 func _physics_process(delta: float) -> void:
-	_handle_brake()
+	_handle_kick()
 	_handle_dir()
 	_handle_move(delta)
 
-func _handle_brake():
-	if Input.is_action_pressed("shift"):
-		maxSpeed = MAXSPEED_STOP
-		friction = FRICTION_STOP
-		acceleration = ACCEL_STOP
+func _handle_kick():
+	if Input.is_action_just_pressed("shift"):
+		acceleration = KICK_BOOST
+		friction = KICK_FRICTION
 	else:
-		maxSpeed = MAXSPEED_BASE
+		acceleration = ACCEL_BASE
 		friction = FRICTION_BASE
-		acceleration = ACCEL_BASE 
 
 func _handle_dir():
 	input_dir = Input.get_vector("left","right","up","down")
