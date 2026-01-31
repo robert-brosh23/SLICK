@@ -15,11 +15,17 @@ func handle_particles_clear(particles: SnowSprayParticles):
 	particles.queue_free()
 	
 func _process(delta: float) -> void:
-	var player_direction_vector := Vector2.UP.rotated(player.player_rotation.rotation)
-	player_direction_vector *= Vector2(-0.75, 0)
-	player_direction_vector += Vector2(0, -1.0)
+	var player_velocity_normalized = player.velocity.normalized() * -1
+	var particle_spawn_angle := (Vector2.UP.rotated(player.player_rotation.rotation) + player_velocity_normalized).normalized()
+	particle_spawn_angle.x *= -1.0
+	particle_spawn_angle.y *= -1.0
+	
+	var particle_velocity = 50 + player.velocity.length() * .5
+	
 	var mat = continuous_spawner.process_material as ParticleProcessMaterial
-	mat.direction = Vector3(player_direction_vector.x, player_direction_vector.y, 0)
+	mat.direction = Vector3(particle_spawn_angle.x, particle_spawn_angle.y, 0)
+	mat.initial_velocity_min = particle_velocity * 0.9
+	mat.initial_velocity_max = particle_velocity * 1.1
 
 func spawn_continuous():
 	continuous_spawner.emitting = true

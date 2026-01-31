@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://b7rbua24wkm4e"]
+
+[ext_resource type="Texture2D" uid="uid://bgmcfqnfowpbr" path="res://sprites/penguin_spritesheet.png" id="1_4m4me"]
+[ext_resource type="Script" uid="uid://ct38gybue6d3c" path="res://enemy/basic_penguin.gd" id="1_ac04e"]
+
+[node name="BasicPenguin" type="Node2D" unique_id=1954501391 node_paths=PackedStringArray("sprite")]
+texture_filter = 1
+script = ExtResource("1_ac04e")
+sprite = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=636579263]
+texture = ExtResource("1_4m4me")
+hframes = 8
