@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://bs7ggbood8k4m"]
+
+[ext_resource type="Script" uid="uid://nll0h80tjwj1" path="res://player/snow_spray_particles/snow_spray_particles.gd" id="1_d5w0x"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rgyib"]
+particle_flag_disable_z = true
+direction = Vector3(0.25, -1, 0)
+spread = 10.0
+initial_velocity_min = 50.0
+initial_velocity_max = 80.0
+gravity = Vector3(0, 98, 0)
+
+[node name="SnowSprayParticles" type="GPUParticles2D" unique_id=2071627551]
+emitting = false
+amount = 40
+one_shot = true
+explosiveness = 0.77
+process_material = SubResource("ParticleProcessMaterial_rgyib")
+script = ExtResource("1_d5w0x")

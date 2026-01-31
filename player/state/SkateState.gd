@@ -14,11 +14,11 @@ func physics_update(_delta: float):
 		return
 		
 	if Input.is_action_pressed("up"):
-		player.force = Vector2.UP.rotated(player.rotation) * SKATE_ACCELERATION
+		player.force = Vector2.UP.rotated(player.player_rotation.rotation) * SKATE_ACCELERATION
 	else:
 		player.force = Vector2.ZERO
 		
 	if Input.is_action_pressed("right"):
-		player.rotate(SKATE_MANUVERABILITY * _delta)
+		player.player_rotation.rotate(SKATE_MANUVERABILITY * _delta)
 	elif Input.is_action_pressed("left"):
-		player.rotate(-1.0 * SKATE_MANUVERABILITY * _delta)
+		player.player_rotation.rotate(-1.0 * SKATE_MANUVERABILITY * _delta)

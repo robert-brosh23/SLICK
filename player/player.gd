@@ -1,47 +1,29 @@
-# Fairly basic controller, can stop and start with shift
-
+class_name Player
 extends CharacterBody2D
 
-const MAXSPEED_BASE := 300.0
-const ACCEL_BASE := 60.0
-const FRICTION_BASE := 150.0
-const MAXSPEED_STOP := 200.0
-const ACCEL_STOP := 6000.0
-const FRICTION_STOP := 1000.0
+const FRICTION_BASE := .995
 
-var maxSpeed : float
-var friction : float
-var acceleration : float
-var input_dir : Vector2
+@export var animation_tree : AnimationTree
+@export var player_rotation : Node2D
+
+var force := Vector2(0.0,0.0)
+var friction : float = FRICTION_BASE
 
 func _physics_process(delta: float) -> void:
-	_handle_brake()
-	_handle_dir()
-	_handle_move(delta)
+	_handle_slip(delta)
+	_handle_animation()
+	move_and_slide_isometric()
 
-func _handle_brake():
-	if Input.is_action_pressed("shift"):
-		maxSpeed = MAXSPEED_STOP
-		friction = FRICTION_STOP
-		acceleration = ACCEL_STOP
-	else:
-		maxSpeed = MAXSPEED_BASE
-		friction = FRICTION_BASE
-		acceleration = ACCEL_BASE 
-
-func _handle_dir():
-	input_dir = Input.get_vector("left","right","up","down")
-
-func _handle_move(delta: float):
-	# if there's a direction input, accelerate to target speed
-	if input_dir != Vector2.ZERO:
-		input_dir = input_dir.normalized()
-		velocity += input_dir * acceleration * delta
-		if velocity.length() > maxSpeed:
-			velocity = velocity.normalized() * maxSpeed
-	# if no inputs, slide based on friction
-	else:
-		var friction_step := friction * delta
-		velocity = velocity.move_toward(Vector2.ZERO, friction_step)
-
+func _handle_slip(delta: float):
+	velocity += force
+	velocity *= friction
+	
+func _handle_animation():
+	var up_rotated = Vector2.UP.rotated(player_rotation.rotation)
+	var direction = Vector2(up_rotated.x, -1.0 * up_rotated.y)
+	animation_tree.set("parameters/blend_position", direction)
+	
+func move_and_slide_isometric():
+	velocity.y *= 0.5
 	move_and_slide()
+	velocity.y *= 2.0
