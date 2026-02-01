@@ -1,12 +1,11 @@
 class_name ChargeState
 extends State
 
-const CHARGE_SPEED := 500.0
-const MAX_CHARGE := 600.0
+const CHARGE_SPEED := 400.0
+const MAX_CHARGE := 400.0
 const CHARGE_MANUVERABILITY_MAX := 7.0
 const CHARGE_MANUVERABILITY_DECAY := 0.98
-const BRAKE_CHARGE_FRICTION := .96
-const INITIAL_BOOST_VELOCITY_OVERRIDE_DECAY := .5
+const BRAKE_CHARGE_FRICTION := 400.0
 
 @export var player: Player
 @export var charge_bar: ProgressBar
@@ -42,9 +41,11 @@ func physics_update(_delta: float):
 func _release_boost(_delta: float):
 	particle_spawner.stop_spawn_continuous()
 	charge_bar.value = 0
-	player.velocity *= INITIAL_BOOST_VELOCITY_OVERRIDE_DECAY
 	player.friction = player.FRICTION_BASE
-	player.force = Vector2.UP.rotated(player.player_rotation.rotation) * charge_amount
+	
+	var boost_dir := Vector2.UP.rotated(player.player_rotation.rotation)
+	player.force = boost_dir * charge_amount
+	
 	Transitioned.emit(self, "SkateState")
 		
 func _ready():

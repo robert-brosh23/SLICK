@@ -10,7 +10,7 @@ var prev_particle_velocity : float
 var particle_spawn_angle: Vector2
 var particle_velocity: float
 	
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	var player_velocity_normalized = player.velocity.normalized() * -1
 	
 	var rotation_delta = _get_and_update_rotation_delta(delta)
@@ -22,7 +22,7 @@ func _process(delta: float) -> void:
 		
 	prev_particle_angle = particle_spawn_angle
 	
-	particle_velocity = lerp(prev_particle_velocity, 10 + (player.velocity.length() * 1.2) * (5000.0 * rotation_delta),  1.0 - exp(-8.0 * delta))
+	particle_velocity = lerp(prev_particle_velocity, 10 + (player.velocity.length() * 0.4) * (1000.0 * rotation_delta),  .1)
 	prev_particle_velocity = particle_velocity
 	
 	var mat = continuous_spawner.process_material as ParticleProcessMaterial

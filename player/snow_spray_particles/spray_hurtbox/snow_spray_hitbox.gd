@@ -37,6 +37,6 @@ func _gradually_expand_collision_shape():
 	collision_shape.shape = shape
 	
 	while true:
-		shape.radius += 4
+		shape.radius += speed * .05
 		await get_tree().create_timer(.1).timeout
 	

@@ -1,7 +1,7 @@
 class_name SkateState
 extends State
 
-const SKATE_ACCELERATION := 2.5
+const SKATE_ACCELERATION := 1.0
 const SKATE_MANUVERABILITY := 1.5
 const BRAKE_FRICTION := .95
 

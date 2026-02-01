@@ -13,6 +13,7 @@ config_version=5
 config/name="SLICK"
 run/main_scene="uid://b0ehf1seelnv6"
 config/features=PackedStringArray("4.6", "Forward Plus")
+run/max_fps=24
 config/icon="res://icon.svg"
 
 [display]

@@ -1,7 +1,7 @@
 class_name Player
 extends CharacterBody2D
 
-const FRICTION_BASE := .995
+const FRICTION_BASE := .1
 
 @export var animation_tree : AnimationTree
 @export var player_rotation : Node2D
@@ -15,8 +15,8 @@ func _physics_process(delta: float) -> void:
 	move_and_slide_isometric()
 
 func _handle_slip(delta: float):
-	velocity += force
-	velocity *= friction
+	velocity += force * delta * 100
+	velocity = velocity.move_toward(Vector2.ZERO, friction * delta)
 	
 func _handle_animation():
 	var up_rotated = Vector2.UP.rotated(player_rotation.rotation)

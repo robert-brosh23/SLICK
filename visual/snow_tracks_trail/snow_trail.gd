@@ -23,7 +23,7 @@ func _physics_process(delta):
 		trail_right.remove_point(0)
 
 func _calculate_left_tread_pos() -> Vector2:
-	return Vector2.LEFT.rotated(player.player_rotation.rotation) * 5 + player.global_position
+	return Vector2.LEFT.rotated(player.player_rotation.rotation) * 5 * Vector2(1, 0.5) + player.global_position + Vector2(0, 1.5)
 
 func _calculate_right_tread_pos() -> Vector2:
-	return Vector2.RIGHT.rotated(player.player_rotation.rotation) * 5 + player.global_position
+	return Vector2.RIGHT.rotated(player.player_rotation.rotation) * 5 * Vector2(1, 0.5) + player.global_position + Vector2(0, 1.5)
