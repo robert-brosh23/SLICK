@@ -204,11 +204,12 @@ blend_point_7/node = SubResource("AnimationNodeAnimation_wodsf")
 blend_point_7/pos = Vector2(-1, 1)
 blend_mode = 1
 
-[node name="Player" type="CharacterBody2D" unique_id=1850284369 node_paths=PackedStringArray("animation_tree", "player_rotation")]
+[node name="Player" type="CharacterBody2D" unique_id=1850284369 node_paths=PackedStringArray("animation_tree", "player_rotation", "sprite")]
 texture_filter = 1
 script = ExtResource("1_ktmdc")
 animation_tree = NodePath("PlayerAnimator/AnimationTree")
 player_rotation = NodePath("PlayerRotation")
+sprite = NodePath("PlayerAnimator/PlayerSprite")
 
 [node name="PlayerRotation" type="Node2D" parent="." unique_id=241691745]
 

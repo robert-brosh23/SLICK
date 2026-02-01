@@ -2,6 +2,13 @@
 
 [ext_resource type="Script" uid="uid://nll0h80tjwj1" path="res://player/snow_spray_particles/snow_spray_particles.gd" id="1_d5w0x"]
 
+[sub_resource type="Gradient" id="Gradient_d5w0x"]
+offsets = PackedFloat32Array(0.99462366, 1)
+colors = PackedColorArray(0.16862746, 0.6431373, 0.6509804, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ajsfa"]
+gradient = SubResource("Gradient_d5w0x")
+
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rgyib"]
 particle_flag_disable_z = true
 direction = Vector3(0.25, -1, 0)
@@ -9,6 +16,7 @@ spread = 10.0
 initial_velocity_min = 50.0
 initial_velocity_max = 80.0
 gravity = Vector3(0, 98, 0)
+color_ramp = SubResource("GradientTexture1D_ajsfa")
 
 [node name="SnowSprayParticles" type="GPUParticles2D" unique_id=2071627551]
 emitting = false

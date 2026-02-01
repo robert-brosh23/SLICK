@@ -5,6 +5,7 @@ const FRICTION_BASE := .1
 
 @export var animation_tree : AnimationTree
 @export var player_rotation : Node2D
+@export var sprite : Sprite2D
 
 var force := Vector2(0.0,0.0)
 var friction : float = FRICTION_BASE
@@ -27,3 +28,6 @@ func move_and_slide_isometric():
 	velocity.y *= 0.5
 	move_and_slide()
 	velocity.y *= 2.0
+	
+func _ready() -> void:
+	pass
