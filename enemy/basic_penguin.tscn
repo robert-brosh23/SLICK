@@ -2,12 +2,46 @@
 
 [ext_resource type="Texture2D" uid="uid://bgmcfqnfowpbr" path="res://sprites/penguin_spritesheet.png" id="1_4m4me"]
 [ext_resource type="Script" uid="uid://ct38gybue6d3c" path="res://enemy/basic_penguin.gd" id="1_ac04e"]
+[ext_resource type="PackedScene" uid="uid://gdei2nsvuf6g" path="res://util/Hitbox/hitbox.tscn" id="3_b7uw6"]
+[ext_resource type="PackedScene" uid="uid://rbpv2yyecy83" path="res://util/state_machine/state_matchine.tscn" id="4_65nva"]
+[ext_resource type="PackedScene" uid="uid://fpc4vtdwsnr8" path="res://util/state_machine/state/state.tscn" id="5_jcdtq"]
+[ext_resource type="Script" uid="uid://dvyad5pbo3ase" path="res://enemy/state/idle_state.gd" id="6_qaxwg"]
+[ext_resource type="Script" uid="uid://cfcc31ok4v8ie" path="res://enemy/state/dead_state.gd" id="7_jcdtq"]
+[ext_resource type="Script" uid="uid://cvn6d3thqa68e" path="res://enemy/state/run_away_state.gd" id="8_qaxwg"]
 
-[node name="BasicPenguin" type="Node2D" unique_id=1954501391 node_paths=PackedStringArray("sprite")]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_doh7v"]
+radius = 3.9999816
+height = 11.999945
+
+[node name="BasicPenguin" type="Node2D" unique_id=1954501391 node_paths=PackedStringArray("sprite", "hitbox", "state_machine")]
 texture_filter = 1
 script = ExtResource("1_ac04e")
 sprite = NodePath("Sprite2D")
+hitbox = NodePath("Hitbox")
+state_machine = NodePath("StateMatchine")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=636579263]
 texture = ExtResource("1_4m4me")
 hframes = 8
+
+[node name="Hitbox" parent="." unique_id=23520686 instance=ExtResource("3_b7uw6")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=212756035]
+position = Vector2(0, 7)
+rotation = -1.5707964
+shape = SubResource("CapsuleShape2D_doh7v")
+
+[node name="StateMatchine" parent="." unique_id=1017248867 node_paths=PackedStringArray("ready_state") instance=ExtResource("4_65nva")]
+ready_state = NodePath("IdleState")
+
+[node name="IdleState" parent="StateMatchine" unique_id=1243131995 node_paths=PackedStringArray("enemy") instance=ExtResource("5_jcdtq")]
+script = ExtResource("6_qaxwg")
+enemy = NodePath("../..")
+
+[node name="DeadState" parent="StateMatchine" unique_id=2080475046 node_paths=PackedStringArray("enemy") instance=ExtResource("5_jcdtq")]
+script = ExtResource("7_jcdtq")
+enemy = NodePath("../..")
+
+[node name="RunAwayState" parent="StateMatchine" unique_id=1130245095 node_paths=PackedStringArray("enemy") instance=ExtResource("5_jcdtq")]
+script = ExtResource("8_qaxwg")
+enemy = NodePath("../..")

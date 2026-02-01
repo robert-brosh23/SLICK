@@ -11,6 +11,7 @@ script = ExtResource("1_vu5hj")
 collision_shape = NodePath("Hurtbox/CollisionShape2D")
 
 [node name="Hurtbox" parent="." unique_id=1198781051 instance=ExtResource("1_7m5mt")]
+collision_mask = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1004774737]
 shape = SubResource("CircleShape2D_vu5hj")

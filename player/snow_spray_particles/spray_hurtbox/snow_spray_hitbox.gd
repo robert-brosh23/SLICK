@@ -19,9 +19,7 @@ static func spawn_and_shoot(_pos: Vector2, _direction: Vector2, _speed: float, _
 	
 func _physics_process(delta: float) -> void:
 	var velocity := speed * direction
-	print(velocity)
 	var motion := velocity * delta
-	print(motion)
 	global_position += motion
 
 func _ready() -> void:
