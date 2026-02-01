@@ -20,6 +20,7 @@ func enter() -> void:
 	charge_amount = 0.0
 	charge_manuverability = CHARGE_MANUVERABILITY_MAX
 	player.friction = BRAKE_CHARGE_FRICTION
+	particle_spawner.spawn_continuous()
 	
 	particle_spawner.last_rotation = player.player_rotation.rotation	
 	
@@ -33,8 +34,6 @@ func physics_update(_delta: float):
 		player.player_rotation.rotate(charge_manuverability * _delta)
 	elif Input.is_action_pressed("left"):
 		player.player_rotation.rotate(-1.0 * charge_manuverability * _delta)
-
-	particle_spawner.spawn_continuous()
 		
 	if !Input.is_action_pressed("space"):
 		_release_boost(_delta)

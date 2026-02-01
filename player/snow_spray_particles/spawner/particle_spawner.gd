@@ -7,13 +7,14 @@ extends Node2D
 var last_rotation : float
 var prev_particle_angle : Vector2
 var prev_particle_velocity : float
+var particle_spawn_angle: Vector2
+var particle_velocity: float
 	
 func _process(delta: float) -> void:
 	var player_velocity_normalized = player.velocity.normalized() * -1
 	
 	var rotation_delta = _get_and_update_rotation_delta(delta)
 	
-	var particle_spawn_angle
 	if rotation_delta > 0 && player.velocity.length() > 20.0:
 		particle_spawn_angle = lerp(prev_particle_angle, (Vector2.UP.rotated(player.player_rotation.rotation) + player_velocity_normalized).normalized() * Vector2(-1.0,-1.0), 1.0 - exp(-8.0 * delta))
 	else:
@@ -21,7 +22,7 @@ func _process(delta: float) -> void:
 		
 	prev_particle_angle = particle_spawn_angle
 	
-	var particle_velocity = lerp(prev_particle_velocity, 10 + (player.velocity.length() * 1.2) * (5000.0 * rotation_delta),  1.0 - exp(-8.0 * delta))
+	particle_velocity = lerp(prev_particle_velocity, 10 + (player.velocity.length() * 1.2) * (5000.0 * rotation_delta),  1.0 - exp(-8.0 * delta))
 	prev_particle_velocity = particle_velocity
 	
 	var mat = continuous_spawner.process_material as ParticleProcessMaterial
@@ -32,8 +33,15 @@ func _process(delta: float) -> void:
 func spawn_continuous():
 	prev_particle_velocity = 100.0
 	continuous_spawner.emitting = true
+	spawn_hurtboxes()
+	
+func spawn_hurtboxes():
+	while continuous_spawner.emitting:
+		get_tree().root.add_child(SnowSprayHurtbox.spawn_and_shoot(player.global_position, particle_spawn_angle, particle_velocity, 1))
+		await get_tree().create_timer(.1).timeout
 
 func stop_spawn_continuous():
+	get_tree().root.add_child(SnowSprayHurtbox.spawn_and_shoot(player.global_position, particle_spawn_angle, particle_velocity, 1))
 	continuous_spawner.emitting = false
 
 func _get_and_update_rotation_delta(_delta: float) -> float:
@@ -46,7 +54,6 @@ func _get_and_update_rotation_delta(_delta: float) -> float:
 #region deprecated
 func spawn_snow_particles(velocity_direction: Vector2):
 	var particles = SnowSprayParticles.spawn_particles(velocity_direction)
-	print(velocity_direction)
 	add_child(particles)
 	handle_particles_clear(particles)
 	

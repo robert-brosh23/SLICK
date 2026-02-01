@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://b0oexl6sik4l7"]
+
+[ext_resource type="PackedScene" uid="uid://clt4igska5i10" path="res://util/Hurtbox/hurtbox.tscn" id="1_7m5mt"]
+[ext_resource type="Script" uid="uid://0e0a5hap13lr" path="res://player/snow_spray_particles/spray_hurtbox/snow_spray_hitbox.gd" id="1_vu5hj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vu5hj"]
+radius = 3.0
+
+[node name="SnowSprayHurtbox" type="Node2D" unique_id=686593674 node_paths=PackedStringArray("collision_shape")]
+script = ExtResource("1_vu5hj")
+collision_shape = NodePath("Hurtbox/CollisionShape2D")
+
+[node name="Hurtbox" parent="." unique_id=1198781051 instance=ExtResource("1_7m5mt")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1004774737]
+shape = SubResource("CircleShape2D_vu5hj")

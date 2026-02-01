@@ -27,4 +27,3 @@ func move_and_slide_isometric():
 	velocity.y *= 0.5
 	move_and_slide()
 	velocity.y *= 2.0
-	print(velocity.length())
