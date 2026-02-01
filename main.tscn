@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bjry5y7dhj0kv" path="res://sprites/iso_tileset.png" id="2_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://cx12wbepve0ru" path="res://player/player.tscn" id="2_h2yge"]
 [ext_resource type="PackedScene" uid="uid://b7rbua24wkm4e" path="res://enemy/basic_penguin.tscn" id="3_h2yge"]
+[ext_resource type="PackedScene" uid="uid://bggv56c0juha2" path="res://visual/snow_tracks_trail/snow_trail.tscn" id="4_1bvp3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0xm2m"]
 texture = ExtResource("2_1bvp3")
@@ -79,3 +80,6 @@ position = Vector2(-46, 79)
 
 [node name="BasicPenguin4" parent="." unique_id=569782360 instance=ExtResource("3_h2yge")]
 position = Vector2(49, -57)
+
+[node name="SnowTrail" parent="." unique_id=1413568504 node_paths=PackedStringArray("player") instance=ExtResource("4_1bvp3")]
+player = NodePath("../Player4")

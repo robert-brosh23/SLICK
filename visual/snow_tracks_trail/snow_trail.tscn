@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://bggv56c0juha2"]
+
+[ext_resource type="Script" uid="uid://djhd84tliereh" path="res://visual/snow_tracks_trail/snow_trail.gd" id="1_1w5wo"]
+
+[node name="SnowTrail" type="Node2D" unique_id=1413568504 node_paths=PackedStringArray("trail_left", "trail_right")]
+script = ExtResource("1_1w5wo")
+trail_left = NodePath("TrailLeft")
+trail_right = NodePath("TrailRight")
+
+[node name="TrailLeft" type="Line2D" parent="." unique_id=914996998]
+width = 1.0
+default_color = Color(0, 0, 0, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="TrailRight" type="Line2D" parent="." unique_id=1760715927]
+width = 1.0
+default_color = Color(0, 0, 0, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2

@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://clqdwu0jlwugl" path="res://sprites/player_spritesheet.png" id="2_n1sff"]
 [ext_resource type="PackedScene" uid="uid://rbpv2yyecy83" path="res://util/state_machine/state_matchine.tscn" id="3_afben"]
 [ext_resource type="PackedScene" uid="uid://fpc4vtdwsnr8" path="res://util/state_machine/state/state.tscn" id="4_nfto1"]
-[ext_resource type="Script" uid="uid://c2b8r851478jb" path="res://player/state/SkateState.gd" id="5_n1sff"]
-[ext_resource type="Script" uid="uid://ut4jpgeb3pyv" path="res://player/state/ChargeState.gd" id="6_afben"]
+[ext_resource type="Script" uid="uid://c2b8r851478jb" path="res://player/state/skate_state.gd" id="5_n1sff"]
+[ext_resource type="Script" uid="uid://ut4jpgeb3pyv" path="res://player/state/charge_state.gd" id="6_afben"]
 [ext_resource type="FontFile" uid="uid://c6lfcmqrq1huc" path="res://util/fonts/m3x6.ttf" id="8_n1sff"]
 [ext_resource type="PackedScene" uid="uid://3a7rvhu374cn" path="res://player/snow_spray_particles/spawner/particle_spawner.tscn" id="9_hg6s5"]
 
