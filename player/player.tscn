@@ -6,12 +6,37 @@
 [ext_resource type="PackedScene" uid="uid://fpc4vtdwsnr8" path="res://util/state_machine/state/state.tscn" id="4_nfto1"]
 [ext_resource type="Script" uid="uid://c2b8r851478jb" path="res://player/state/skate_state.gd" id="5_n1sff"]
 [ext_resource type="Script" uid="uid://ut4jpgeb3pyv" path="res://player/state/charge_state.gd" id="6_afben"]
-[ext_resource type="FontFile" uid="uid://c6lfcmqrq1huc" path="res://util/fonts/m3x6.ttf" id="8_n1sff"]
 [ext_resource type="PackedScene" uid="uid://3a7rvhu374cn" path="res://player/snow_spray_particles/spawner/particle_spawner.tscn" id="9_hg6s5"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hg6s5"]
 radius = 3.0
 height = 12.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rgyib"]
+bg_color = Color(1, 0.6901961, 0.7490196, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.40784314, 0.16862746, 0.6117647, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_left = 2.0
+expand_margin_right = 2.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hg6s5"]
+bg_color = Color(0.84313726, 0.2901961, 0.78039217, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_bottom = 2
+border_color = Color(0.40784314, 0.16862746, 0.6117647, 1)
+corner_radius_top_left = 4
+corner_radius_bottom_left = 4
+expand_margin_left = 2.0
+anti_aliasing = false
 
 [sub_resource type="Animation" id="Animation_rgyib"]
 length = 0.001
@@ -226,7 +251,7 @@ player = NodePath("../..")
 [node name="ChargeState" parent="StateMatchine" unique_id=1836642914 node_paths=PackedStringArray("player", "charge_bar", "particle_spawner") instance=ExtResource("4_nfto1")]
 script = ExtResource("6_afben")
 player = NodePath("../..")
-charge_bar = NodePath("../../VBoxContainer/ChargeBar")
+charge_bar = NodePath("../../ChargeBar")
 particle_spawner = NodePath("../../ParticleSpawner")
 
 [node name="ParticleSpawner" parent="." unique_id=1156803299 node_paths=PackedStringArray("player") instance=ExtResource("9_hg6s5")]
@@ -238,22 +263,15 @@ position = Vector2(0, 1)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_hg6s5")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=709744095]
+[node name="ChargeBar" type="ProgressBar" parent="." unique_id=1414149011]
+z_index = 5
+custom_minimum_size = Vector2(0, 6)
 offset_left = -15.0
-offset_top = -36.0
+offset_top = -24.0
 offset_right = 15.0
 offset_bottom = -18.0
-theme_override_constants/separation = 1
-
-[node name="Label" type="Label" parent="VBoxContainer" unique_id=606390352]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("8_n1sff")
-theme_override_font_sizes/font_size = 16
-text = "Boost"
-horizontal_alignment = 1
-
-[node name="ChargeBar" type="ProgressBar" parent="VBoxContainer" unique_id=1414149011]
-layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_rgyib")
+theme_override_styles/fill = SubResource("StyleBoxFlat_hg6s5")
 max_value = 1200.0
 show_percentage = false
 
