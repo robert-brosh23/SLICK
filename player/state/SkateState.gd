@@ -13,10 +13,7 @@ func physics_update(_delta: float):
 		Transitioned.emit(self, "ChargeState")
 		return
 		
-	if Input.is_action_pressed("up"):
-		player.force = Vector2.UP.rotated(player.player_rotation.rotation) * SKATE_ACCELERATION
-	else:
-		player.force = Vector2.ZERO
+	player.force = Vector2.UP.rotated(player.player_rotation.rotation) * SKATE_ACCELERATION
 		
 	if Input.is_action_pressed("right"):
 		player.player_rotation.rotate(SKATE_MANUVERABILITY * _delta)
