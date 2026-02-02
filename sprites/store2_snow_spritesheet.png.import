@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dn1acno00ubx7"
-path="res://.godot/imported/snowblock_spritesheet.png-680e9660e97d87fa630c12bfc1034e23.ctex"
+uid="uid://day81r52p12na"
+path="res://.godot/imported/store2_snow_spritesheet.png-3f9440c732fd5e9a79c2ff502f168906.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://snowblock_spritesheet.png"
-dest_files=["res://.godot/imported/snowblock_spritesheet.png-680e9660e97d87fa630c12bfc1034e23.ctex"]
+source_file="res://sprites/store2_snow_spritesheet.png"
+dest_files=["res://.godot/imported/store2_snow_spritesheet.png-3f9440c732fd5e9a79c2ff502f168906.ctex"]
 
 [params]
 

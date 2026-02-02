@@ -1,0 +1,115 @@
+[gd_scene format=3 uid="uid://b6wkvmpbnw2c3"]
+
+[ext_resource type="Texture2D" uid="uid://bkei81un6rf8l" path="res://sprites/van_penguin-spawn_spritesheet.png" id="1_1iskg"]
+[ext_resource type="Script" uid="uid://bm8m3s4r24864" path="res://enemy/van/van.gd" id="1_o33qd"]
+
+[sub_resource type="Animation" id="Animation_1iskg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_jhjwt"]
+resource_name = "close_door"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [12, 11, 10]
+}
+
+[sub_resource type="Animation" id="Animation_o33qd"]
+resource_name = "drive"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.10000001, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_5qgg4"]
+resource_name = "open_door"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [10, 11, 12]
+}
+
+[sub_resource type="Animation" id="Animation_haeic"]
+resource_name = "penguin_get_out"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.099999994, 0.19999999, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [13, 14, 15, 16]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_haeic"]
+_data = {
+&"RESET": SubResource("Animation_1iskg"),
+&"close_door": SubResource("Animation_jhjwt"),
+&"drive": SubResource("Animation_o33qd"),
+&"open_door": SubResource("Animation_5qgg4"),
+&"penguin_get_out": SubResource("Animation_haeic")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_o33qd"]
+radius = 7.0
+height = 60.0
+
+[node name="Van" type="Node2D" unique_id=420412937 node_paths=PackedStringArray("animation_player")]
+texture_filter = 1
+script = ExtResource("1_o33qd")
+animation_player = NodePath("AnimationPlayer")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=12323096]
+texture = ExtResource("1_1iskg")
+hframes = 10
+vframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1393164058]
+libraries/ = SubResource("AnimationLibrary_haeic")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=778808299]
+position = Vector2(-1, 8)
+rotation = -1.5707964
+shape = SubResource("CapsuleShape2D_o33qd")

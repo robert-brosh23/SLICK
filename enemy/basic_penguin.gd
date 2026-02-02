@@ -1,9 +1,16 @@
 class_name BasicPenguin
 extends Node2D
 
+const SCENE = preload("res://enemy/basic_penguin.tscn")
+
 @export var sprite: Sprite2D
 @export var hitbox: HitBox
 @export var state_machine: StateMachine
+
+static func spawn_penguin(_position: Vector2) -> BasicPenguin:
+	var enemy: BasicPenguin = SCENE.instantiate()
+	enemy.global_position = _position
+	return enemy
 
 func _ready():
 	hitbox.Damaged.connect(_penguin_damaged)

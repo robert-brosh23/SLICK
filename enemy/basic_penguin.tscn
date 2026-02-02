@@ -24,7 +24,6 @@ state_machine = NodePath("StateMatchine")
 [node name="BaseSprite" type="Sprite2D" parent="." unique_id=636579263]
 texture = ExtResource("1_4m4me")
 hframes = 8
-frame = 2
 
 [node name="PenguinAnimation" type="Sprite2D" parent="." unique_id=763263699]
 visible = false
