@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bgmcfqnfowpbr" path="res://sprites/penguin_spritesheet.png" id="1_4m4me"]
 [ext_resource type="Script" uid="uid://ct38gybue6d3c" path="res://enemy/basic_penguin.gd" id="1_ac04e"]
 [ext_resource type="PackedScene" uid="uid://gdei2nsvuf6g" path="res://util/Hitbox/hitbox.tscn" id="3_b7uw6"]
+[ext_resource type="Texture2D" uid="uid://op7l1snxyxtq" path="res://sprites/penguin_animation_spritesheet.png" id="3_sqcg3"]
 [ext_resource type="PackedScene" uid="uid://rbpv2yyecy83" path="res://util/state_machine/state_matchine.tscn" id="4_65nva"]
 [ext_resource type="PackedScene" uid="uid://fpc4vtdwsnr8" path="res://util/state_machine/state/state.tscn" id="5_jcdtq"]
 [ext_resource type="Script" uid="uid://dvyad5pbo3ase" path="res://enemy/state/idle_state.gd" id="6_qaxwg"]
@@ -16,13 +17,21 @@ height = 11.999945
 [node name="BasicPenguin" type="Node2D" unique_id=1954501391 node_paths=PackedStringArray("sprite", "hitbox", "state_machine")]
 texture_filter = 1
 script = ExtResource("1_ac04e")
-sprite = NodePath("Sprite2D")
+sprite = NodePath("BaseSprite")
 hitbox = NodePath("Hitbox")
 state_machine = NodePath("StateMatchine")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=636579263]
+[node name="BaseSprite" type="Sprite2D" parent="." unique_id=636579263]
 texture = ExtResource("1_4m4me")
 hframes = 8
+frame = 2
+
+[node name="PenguinAnimation" type="Sprite2D" parent="." unique_id=763263699]
+visible = false
+texture = ExtResource("3_sqcg3")
+hframes = 7
+vframes = 3
+frame = 20
 
 [node name="Hitbox" parent="." unique_id=23520686 instance=ExtResource("3_b7uw6")]
 
@@ -38,10 +47,14 @@ ready_state = NodePath("IdleState")
 script = ExtResource("6_qaxwg")
 enemy = NodePath("../..")
 
-[node name="DeadState" parent="StateMatchine" unique_id=2080475046 node_paths=PackedStringArray("enemy") instance=ExtResource("5_jcdtq")]
+[node name="DeadState" parent="StateMatchine" unique_id=2080475046 node_paths=PackedStringArray("base_sprite", "animation_sprite", "enemy") instance=ExtResource("5_jcdtq")]
 script = ExtResource("7_jcdtq")
+base_sprite = NodePath("../../BaseSprite")
+animation_sprite = NodePath("../../PenguinAnimation")
 enemy = NodePath("../..")
 
-[node name="RunAwayState" parent="StateMatchine" unique_id=1130245095 node_paths=PackedStringArray("enemy") instance=ExtResource("5_jcdtq")]
+[node name="RunAwayState" parent="StateMatchine" unique_id=1130245095 node_paths=PackedStringArray("base_sprite", "animation_sprite", "enemy") instance=ExtResource("5_jcdtq")]
 script = ExtResource("8_qaxwg")
+base_sprite = NodePath("../../BaseSprite")
+animation_sprite = NodePath("../../PenguinAnimation")
 enemy = NodePath("../..")
