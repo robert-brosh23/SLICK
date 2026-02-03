@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://cx12wbepve0ru"]
 
 [ext_resource type="Script" uid="uid://mmari8fjtnwk" path="res://player/player.gd" id="1_ktmdc"]
+[ext_resource type="Script" uid="uid://46hstbxyocp4" path="res://player/help arrow/help_arrow.gd" id="2_hg6s5"]
 [ext_resource type="Texture2D" uid="uid://clqdwu0jlwugl" path="res://sprites/player_spritesheet.png" id="2_n1sff"]
+[ext_resource type="Texture2D" uid="uid://fwsryqrg1pug" path="res://sprites/purple_dot.png" id="3_8t03j"]
 [ext_resource type="PackedScene" uid="uid://rbpv2yyecy83" path="res://util/state_machine/state_matchine.tscn" id="3_afben"]
 [ext_resource type="PackedScene" uid="uid://fpc4vtdwsnr8" path="res://util/state_machine/state/state.tscn" id="4_nfto1"]
 [ext_resource type="Script" uid="uid://c2b8r851478jb" path="res://player/state/skate_state.gd" id="5_n1sff"]
@@ -242,6 +244,15 @@ animation_tree = NodePath("PlayerAnimator/AnimationTree")
 player_rotation = NodePath("PlayerRotation")
 sprite = NodePath("PlayerAnimator/PlayerSprite")
 
+[node name="HelpArrow" type="Node2D" parent="." unique_id=1175714149 node_paths=PackedStringArray("player")]
+position = Vector2(0, -14)
+script = ExtResource("2_hg6s5")
+player = NodePath("..")
+
+[node name="Sprite2D" type="Sprite2D" parent="HelpArrow" unique_id=1103401114]
+z_index = 10
+texture = ExtResource("3_8t03j")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=660935521]
 z_index = 1
 rotation = 1.5707964
@@ -273,9 +284,9 @@ player = NodePath("..")
 z_index = 5
 custom_minimum_size = Vector2(0, 6)
 offset_left = -15.0
-offset_top = -25.0
+offset_top = -34.0
 offset_right = 15.0
-offset_bottom = -19.0
+offset_bottom = -28.0
 theme_override_styles/background = SubResource("StyleBoxFlat_rgyib")
 theme_override_styles/fill = SubResource("StyleBoxFlat_hg6s5")
 max_value = 1200.0
