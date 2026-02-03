@@ -11,7 +11,8 @@ const SCENE := preload("res://enemy/van/van.tscn")
 @export var animation_player: AnimationPlayer
 
 ## false = left, true = right
-var direction: boolean = false
+var direction: bool = false
+var spawn_info: Array[PenguinSpawnInfo]
 
 var moving_left = false
 var moving_right = false
@@ -19,12 +20,16 @@ var moving_right = false
 static func spawn_van(pos: Vector2, _direction: bool, penguin_directions: Array[PenguinSpawnInfo]) -> Van:
 	var van = SCENE.instantiate() as Van
 	van.global_position = pos
+	print(van.global_position     )
 	van.direction = _direction
+	van.spawn_info = penguin_directions
+	return van
 	
 func handle_spawn_info(penguin_spawn_infos: Array[PenguinSpawnInfo]):
+	animation_player.play("drive")
 	for info in penguin_spawn_infos:
 		await drive(info.delay_time)
-		await let_penguin_out(info.num_penguins)
+		let_penguin_out(info.num_penguins)
 	await drive(30.0)
 	queue_free()
 
@@ -36,9 +41,9 @@ func _physics_process(delta: float) -> void:
 
 func drive(drive_time: float):
 	if direction:
-		drive_right(drive_time)
+		await drive_right(drive_time)
 	else:
-		drive_left(drive_time)
+		await drive_left(drive_time)
 
 func drive_left(drive_time: float):
 	moving_left = true
@@ -58,12 +63,14 @@ func let_penguin_out(num_penguins: int = 1):
 	for i in range(0,num_penguins):
 		animation_player.play("penguin_get_out")
 		await animation_player.animation_finished
-		var penguin = BasicPenguin.spawn_penguin(global_position + Vector2(6,5))
+		
+		var pos
+		if direction:
+			pos = Vector2(-6,5)
+		else:
+			pos = Vector2(6,5)
+		var penguin = BasicPenguin.spawn_penguin(global_position + pos)   
 		get_tree().root.add_child(penguin)
 	animation_player.play("close_door")
 	await animation_player.animation_finished
-	
-func _ready() -> void:
-	await drive_left(3.0)
-	await let_penguin_out(4)
-	await drive_left(11.0)
+	animation_player.play("drive")

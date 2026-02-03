@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://yv4mwc785efg"]
+
+[ext_resource type="Texture2D" uid="uid://wwx4g1pmvrvf" path="res://sprites/store1_snow_spritesheet.png" id="1_trhtk"]
+
+[node name="Store1" type="StaticBody2D" unique_id=910762985]
+y_sort_enabled = true
+collision_layer = 2
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=833426645]
+texture_filter = 1
+texture = ExtResource("1_trhtk")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1667775150]
+polygon = PackedVector2Array(100, 13, 16, -18, -102, 41, -23, 78)

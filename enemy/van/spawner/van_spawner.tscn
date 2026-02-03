@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://c1ukpj60g7d8e"]
+
+[ext_resource type="Script" uid="uid://csl3s7450t5tf" path="res://enemy/van/spawner/van_spawner.gd" id="1_tr85c"]
+
+[node name="VanSpawner" type="Node2D" unique_id=1711116882]
+script = ExtResource("1_tr85c")

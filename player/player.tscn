@@ -230,11 +230,23 @@ blend_point_7/pos = Vector2(-1, 1)
 blend_mode = 1
 
 [node name="Player" type="CharacterBody2D" unique_id=1850284369 node_paths=PackedStringArray("animation_tree", "player_rotation", "sprite")]
+y_sort_enabled = true
 texture_filter = 1
+collision_mask = 3
+motion_mode = 1
+slide_on_ceiling = false
+wall_min_slide_angle = 1.5707964
+safe_margin = 0.2
 script = ExtResource("1_ktmdc")
 animation_tree = NodePath("PlayerAnimator/AnimationTree")
 player_rotation = NodePath("PlayerRotation")
 sprite = NodePath("PlayerAnimator/PlayerSprite")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=660935521]
+z_index = 1
+position = Vector2(0, 1)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_hg6s5")
 
 [node name="PlayerRotation" type="Node2D" parent="." unique_id=241691745]
 
@@ -257,11 +269,6 @@ particle_spawner = NodePath("../../ParticleSpawner")
 [node name="ParticleSpawner" parent="." unique_id=1156803299 node_paths=PackedStringArray("player") instance=ExtResource("9_hg6s5")]
 z_index = 1
 player = NodePath("..")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=660935521]
-position = Vector2(0, 1)
-rotation = 1.5707964
-shape = SubResource("CapsuleShape2D_hg6s5")
 
 [node name="ChargeBar" type="ProgressBar" parent="." unique_id=1414149011]
 z_index = 5
