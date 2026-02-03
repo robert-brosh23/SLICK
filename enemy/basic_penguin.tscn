@@ -11,11 +11,17 @@
 [ext_resource type="Script" uid="uid://cvn6d3thqa68e" path="res://enemy/state/run_away_state.gd" id="8_qaxwg"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_doh7v"]
-radius = 3.9999816
+radius = 3.0
 height = 11.999945
 
-[node name="BasicPenguin" type="Node2D" unique_id=1954501391 node_paths=PackedStringArray("sprite", "hitbox", "state_machine")]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sqcg3"]
+radius = 2.9999323
+height = 11.999729
+
+[node name="BasicPenguin" type="CharacterBody2D" unique_id=226230639 node_paths=PackedStringArray("sprite", "hitbox", "state_machine")]
 texture_filter = 1
+collision_layer = 8
+collision_mask = 14
 script = ExtResource("1_ac04e")
 sprite = NodePath("BaseSprite")
 hitbox = NodePath("Hitbox")
@@ -35,7 +41,7 @@ frame = 20
 [node name="Hitbox" parent="." unique_id=23520686 instance=ExtResource("3_b7uw6")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=212756035]
-position = Vector2(0, 7)
+position = Vector2(0, 9)
 rotation = -1.5707964
 shape = SubResource("CapsuleShape2D_doh7v")
 
@@ -57,3 +63,8 @@ script = ExtResource("8_qaxwg")
 base_sprite = NodePath("../../BaseSprite")
 animation_sprite = NodePath("../../PenguinAnimation")
 enemy = NodePath("../..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1054290516]
+position = Vector2(0, 9)
+rotation = -1.5707964
+shape = SubResource("CapsuleShape2D_sqcg3")

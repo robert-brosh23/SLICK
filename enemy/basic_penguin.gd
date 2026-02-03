@@ -1,5 +1,5 @@
 class_name BasicPenguin
-extends Node2D
+extends CharacterBody2D
 
 const SCENE = preload("res://enemy/basic_penguin.tscn")
 

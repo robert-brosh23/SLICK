@@ -27,7 +27,7 @@ func _handle_animation():
 func move_and_slide_isometric():
 	velocity.y *= 0.5
 	move_and_slide()
-	if get_slide_collision(0) != null:
+	if get_slide_collision_count() > 0:
 		velocity = velocity.bounce(get_slide_collision(0).get_normal()) * .8
 	velocity.y *= 2.0
 	
