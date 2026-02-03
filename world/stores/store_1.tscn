@@ -7,9 +7,32 @@ y_sort_enabled = true
 collision_layer = 4
 collision_mask = 0
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=833426645]
-texture_filter = 1
-texture = ExtResource("1_trhtk")
-
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1667775150]
+position = Vector2(-0.3999939, -39.199997)
 polygon = PackedVector2Array(100, 13, 16, -18, -102, 41, -23, 78)
+
+[node name="Node2D" type="Node2D" parent="." unique_id=813616467]
+y_sort_enabled = true
+position = Vector2(-38, -5.199997)
+
+[node name="Node2D2" type="Node2D" parent="Node2D" unique_id=461644486]
+position = Vector2(4, 5.199997)
+
+[node name="whole_building" type="Sprite2D" parent="Node2D/Node2D2" unique_id=562915157]
+texture_filter = 1
+texture_repeat = 1
+position = Vector2(-7, -39)
+texture = ExtResource("1_trhtk")
+region_enabled = true
+region_rect = Rect2(0, 0, 130, 164)
+
+[node name="Node2D" type="Node2D" parent="Node2D" unique_id=1703587647]
+position = Vector2(88, -18.800003)
+
+[node name="back_part" type="Sprite2D" parent="Node2D/Node2D" unique_id=250139718]
+texture_filter = 1
+texture_repeat = 1
+position = Vector2(15, -15)
+texture = ExtResource("1_trhtk")
+region_enabled = true
+region_rect = Rect2(127, 0, 88, 164)

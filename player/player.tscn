@@ -230,7 +230,6 @@ blend_point_7/pos = Vector2(-1, 1)
 blend_mode = 1
 
 [node name="Player" type="CharacterBody2D" unique_id=1850284369 node_paths=PackedStringArray("animation_tree", "player_rotation", "sprite")]
-y_sort_enabled = true
 texture_filter = 1
 collision_layer = 0
 collision_mask = 14
@@ -245,7 +244,6 @@ sprite = NodePath("PlayerAnimator/PlayerSprite")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=660935521]
 z_index = 1
-position = Vector2(0, 1)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_hg6s5")
 
@@ -275,22 +273,23 @@ player = NodePath("..")
 z_index = 5
 custom_minimum_size = Vector2(0, 6)
 offset_left = -15.0
-offset_top = -24.0
+offset_top = -25.0
 offset_right = 15.0
-offset_bottom = -18.0
+offset_bottom = -19.0
 theme_override_styles/background = SubResource("StyleBoxFlat_rgyib")
 theme_override_styles/fill = SubResource("StyleBoxFlat_hg6s5")
 max_value = 1200.0
 show_percentage = false
 
 [node name="PlayerAnimator" type="Node2D" parent="." unique_id=681185154]
-position = Vector2(0, -6)
+position = Vector2(0, -8)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerAnimator" unique_id=838241679]
 root_node = NodePath("../..")
 libraries/ = SubResource("AnimationLibrary_tqiix")
 
 [node name="PlayerSprite" type="Sprite2D" parent="PlayerAnimator" unique_id=1928952905]
+position = Vector2(0, 1)
 texture = ExtResource("2_n1sff")
 hframes = 8
 frame = 4
