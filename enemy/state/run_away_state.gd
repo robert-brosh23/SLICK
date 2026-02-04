@@ -2,34 +2,36 @@ class_name RunAwayState
 extends EnemyBaseState
 
 @export var base_sprite: Sprite2D
-@export var animation_sprite: Sprite2D
 
 var active := false
+var y_move := 0.0
+
+func _ready():
+	var y_move_timer := Timer.new()
+	y_move_timer.wait_time = 1.0
+	y_move_timer.autostart = true
+	y_move_timer.timeout.connect(on_y_move_timer_timout)
+	add_child(y_move_timer)
 
 func enter():
 	super()
+	animation_tree.set("parameters/conditions/cry", true)
 	active = true
-	start_animation()
 	
 func exit():
 	super()
-	animation_sprite.visible = false
+	animation_tree.set("parameters/conditions/cry", false)
+	enemy.velocity = Vector2.ZERO
 	active = false
 
 func physics_update(_delta: float):
-	enemy.global_position.x -= _delta * 40.0
-
-func start_animation():
-	base_sprite.visible = false
-	animation_sprite.visible = true
-	animation_sprite.frame = 14
-	while active:
-		await get_tree().create_timer(.1).timeout
-		if animation_sprite.frame == 17:
-			animation_sprite.frame = 14
-		else:
-			animation_sprite.frame += 1
+	var x_vel : float = 2000.0
+	if !enemy.run_away_direction:
+		x_vel *= -1
+	enemy.velocity =  Vector2(x_vel, y_move) * _delta
+			
+func on_y_move_timer_timout():
+	y_move = randf_range(-1000.0, 1000.0)
 		
 func on_damage_taken():
-	print("I'm dead")
 	Transitioned.emit(self, "DeadState")

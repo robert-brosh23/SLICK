@@ -67,6 +67,9 @@ shift={
 2d_physics/layer_2="walls"
 2d_physics/layer_3="static_objects"
 2d_physics/layer_4="enemy_collision"
+2d_physics/layer_5="player_collision"
+2d_physics/layer_6="bullet_hurtbox"
+2d_physics/layer_7="player_hitbox"
 
 [physics]
 

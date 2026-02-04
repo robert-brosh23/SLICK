@@ -5,7 +5,7 @@
 [node name="Store1" type="StaticBody2D" unique_id=910762985]
 y_sort_enabled = true
 collision_layer = 4
-collision_mask = 0
+collision_mask = 32
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1667775150]
 position = Vector2(-0.3999939, -39.199997)

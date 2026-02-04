@@ -6,22 +6,14 @@ extends EnemyBaseState
 
 func enter() -> void:
 	super()
-	print("Dead state entered")
-	play_fall_animation()
+	animation_tree.set("parameters/conditions/slip", true)
+	enemy.collision_mask = (1 << 2) | (1 << 3) | (1 << 4)
 	await_get_up()
-	
-func play_fall_animation():
-	base_sprite.visible = false
-	animation_sprite.visible = true
-	animation_sprite.frame = 0
-	for i in range(1,5):
-		await get_tree().create_timer(.08).timeout
-		animation_sprite.frame += 1
 	
 func await_get_up() -> void:
 	await get_tree().create_timer(3.0).timeout
-	animation_sprite.frame = 6
-	for i in range(6,12):
-		await get_tree().create_timer(.08).timeout
-		animation_sprite.frame += 1
+	animation_tree.set("parameters/conditions/slip", false)
+	animation_tree.set("parameters/conditions/get_up", true)
+	await animation_tree.animation_finished
+	animation_tree.set("parameters/conditions/get_up", false)
 	Transitioned.emit(self, "RunAwayState")

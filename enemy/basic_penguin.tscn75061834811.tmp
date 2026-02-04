@@ -1,0 +1,79 @@
+[gd_scene format=3 uid="uid://b7rbua24wkm4e"]
+
+[ext_resource type="Texture2D" uid="uid://bgmcfqnfowpbr" path="res://sprites/penguin_spritesheet.png" id="1_4m4me"]
+[ext_resource type="Script" uid="uid://ct38gybue6d3c" path="res://enemy/basic_penguin.gd" id="1_ac04e"]
+[ext_resource type="PackedScene" uid="uid://gdei2nsvuf6g" path="res://util/Hitbox/hitbox.tscn" id="3_b7uw6"]
+[ext_resource type="Texture2D" uid="uid://op7l1snxyxtq" path="res://sprites/penguin_animation_spritesheet.png" id="3_sqcg3"]
+[ext_resource type="PackedScene" uid="uid://rbpv2yyecy83" path="res://util/state_machine/state_matchine.tscn" id="4_65nva"]
+[ext_resource type="PackedScene" uid="uid://fpc4vtdwsnr8" path="res://util/state_machine/state/state.tscn" id="5_jcdtq"]
+[ext_resource type="Script" uid="uid://dvyad5pbo3ase" path="res://enemy/state/idle_state.gd" id="6_qaxwg"]
+[ext_resource type="Script" uid="uid://cfcc31ok4v8ie" path="res://enemy/state/dead_state.gd" id="7_jcdtq"]
+[ext_resource type="Script" uid="uid://dq1l21ef3tnlm" path="res://enemy/state/move_random_state.gd" id="8_6afmk"]
+[ext_resource type="Script" uid="uid://cvn6d3thqa68e" path="res://enemy/state/run_away_state.gd" id="8_qaxwg"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_doh7v"]
+radius = 3.0
+height = 11.999945
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sqcg3"]
+radius = 2.9999323
+height = 11.999729
+
+[node name="BasicPenguin" type="CharacterBody2D" unique_id=226230639 node_paths=PackedStringArray("sprite", "hitbox", "state_machine")]
+y_sort_enabled = true
+texture_filter = 1
+collision_layer = 8
+collision_mask = 28
+motion_mode = 1
+wall_min_slide_angle = 1.5777776
+safe_margin = 0.2
+script = ExtResource("1_ac04e")
+sprite = NodePath("BaseSprite")
+hitbox = NodePath("Hitbox")
+state_machine = NodePath("StateMatchine")
+
+[node name="BaseSprite" type="Sprite2D" parent="." unique_id=636579263]
+texture = ExtResource("1_4m4me")
+hframes = 8
+
+[node name="PenguinAnimation" type="Sprite2D" parent="." unique_id=763263699]
+visible = false
+texture = ExtResource("3_sqcg3")
+hframes = 7
+vframes = 3
+frame = 20
+
+[node name="Hitbox" parent="." unique_id=23520686 instance=ExtResource("3_b7uw6")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=212756035]
+position = Vector2(0, 9)
+rotation = -1.5707964
+shape = SubResource("CapsuleShape2D_doh7v")
+
+[node name="StateMatchine" parent="." unique_id=1017248867 node_paths=PackedStringArray("ready_state") instance=ExtResource("4_65nva")]
+ready_state = NodePath("MoveRandomState")
+
+[node name="IdleState" parent="StateMatchine" unique_id=1243131995 node_paths=PackedStringArray("enemy") instance=ExtResource("5_jcdtq")]
+script = ExtResource("6_qaxwg")
+enemy = NodePath("../..")
+
+[node name="MoveRandomState" parent="StateMatchine" unique_id=1477099528 node_paths=PackedStringArray("enemy") instance=ExtResource("5_jcdtq")]
+script = ExtResource("8_6afmk")
+enemy = NodePath("../..")
+
+[node name="DeadState" parent="StateMatchine" unique_id=2080475046 node_paths=PackedStringArray("base_sprite", "animation_sprite", "enemy") instance=ExtResource("5_jcdtq")]
+script = ExtResource("7_jcdtq")
+base_sprite = NodePath("../../BaseSprite")
+animation_sprite = NodePath("../../PenguinAnimation")
+enemy = NodePath("../..")
+
+[node name="RunAwayState" parent="StateMatchine" unique_id=1130245095 node_paths=PackedStringArray("base_sprite", "animation_sprite", "enemy") instance=ExtResource("5_jcdtq")]
+script = ExtResource("8_qaxwg")
+base_sprite = NodePath("../../BaseSprite")
+animation_sprite = NodePath("../../PenguinAnimation")
+enemy = NodePath("../..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1054290516]
+position = Vector2(0, 9)
+rotation = -1.5707964
+shape = SubResource("CapsuleShape2D_sqcg3")

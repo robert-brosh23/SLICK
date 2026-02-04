@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://c8c02axi3cjk1"]
+
+[ext_resource type="Texture2D" uid="uid://cero26xb0oaik" path="res://sprites/bullet.png" id="1_03u0n"]
+[ext_resource type="Script" uid="uid://dlffsfhsr65ma" path="res://enemy/bullet/bullet.gd" id="1_ygxie"]
+[ext_resource type="PackedScene" uid="uid://clt4igska5i10" path="res://util/Hurtbox/hurtbox.tscn" id="2_j6cmb"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ygxie"]
+radius = 1.0
+height = 3.5
+
+[node name="Bullet" type="Node2D" unique_id=447284468 node_paths=PackedStringArray("hurtbox")]
+texture_filter = 1
+script = ExtResource("1_ygxie")
+hurtbox = NodePath("Hurtbox")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1693683065]
+position = Vector2(0, -8)
+texture = ExtResource("1_03u0n")
+
+[node name="Hurtbox" parent="." unique_id=1198781051 instance=ExtResource("2_j6cmb")]
+collision_layer = 32
+collision_mask = 70
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=750590471]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_ygxie")
