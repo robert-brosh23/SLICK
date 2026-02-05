@@ -28,7 +28,7 @@ func physics_update(_delta: float):
 		shoot_bullet()
 		shoot_countdown = 100.0
 	if recoil_countdown <= 0.0:
-		Transitioned.emit(self, "IdleState")
+		Transitioned.emit(self, "MoveTowardState")
 
 func shoot_bullet():
 	var direction := (Vector2.LEFT.rotated(player.get_angle_to(enemy.global_position)) * Vector2(1.0, 2.0)).normalized()

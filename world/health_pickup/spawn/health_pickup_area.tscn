@@ -5,6 +5,8 @@
 [node name="HealthPickupArea" type="Node2D" unique_id=947997234 node_paths=PackedStringArray("collison_poly")]
 script = ExtResource("1_8udvc")
 collison_poly = NodePath("Area2D/CollisionPolygon2D")
+health_spawn_cooldown = 20.0
+health_spawn_increase = 5.0
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1697366423]
 

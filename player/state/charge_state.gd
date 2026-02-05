@@ -5,6 +5,7 @@ const CHARGE_SPEED := 400.0
 const MAX_CHARGE := 400.0
 const CHARGE_MANUVERABILITY_MAX := 7.0
 const CHARGE_MANUVERABILITY_DECAY := 0.98
+const CHARGE_MANUVERABILITY_MIN := 1.0
 const BRAKE_CHARGE_FRICTION := 400.0
 
 @export var player: Player
@@ -25,8 +26,7 @@ func enter() -> void:
 	
 func physics_update(_delta: float):
 	charge_amount = clamp(charge_amount + _delta * CHARGE_SPEED, 0.0, MAX_CHARGE)
-	charge_manuverability *= CHARGE_MANUVERABILITY_DECAY
-	
+	charge_manuverability = clamp(charge_manuverability * CHARGE_MANUVERABILITY_DECAY, CHARGE_MANUVERABILITY_MIN, CHARGE_MANUVERABILITY_MAX)
 	charge_bar.value = charge_amount
 	
 	if Input.is_action_pressed("right"):

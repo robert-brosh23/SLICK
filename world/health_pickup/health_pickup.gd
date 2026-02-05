@@ -1,10 +1,20 @@
 class_name HealthPickup
 extends Node2D
 
+const TIME_TO_LIVE := 60.0
+
 const SCENE := preload("res://world/health_pickup/health_pickup.tscn")
+
+var countdown : float
 
 func _ready() -> void:
 	$AnimationPlayer.play("rotate")
+	countdown = TIME_TO_LIVE
+	
+func _process(delta: float) -> void:
+	countdown -= delta
+	if countdown <= 0:
+		queue_free()
 
 static func spawn_health_pickup(_pos: Vector2) -> HealthPickup:
 	var pickup = SCENE.instantiate() as HealthPickup

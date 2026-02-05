@@ -28,7 +28,7 @@ func exit():
 	active = false
 
 func physics_update(_delta: float):
-	var x_vel : float = 4000.0
+	var x_vel : float = 8000.0
 	if !enemy.run_away_direction:
 		x_vel *= -1
 	enemy.velocity =  Vector2(x_vel, y_move) * _delta

@@ -24,7 +24,7 @@ func _setup_lives():
 		lives_hbox.add_child(life1.duplicate())
 	
 func _gain_life(amount: int):
-	if lives == 0:
+	if lives <= 0:
 		return
 	for i in amount:
 		lives_hbox.add_child(lives_hbox.get_child(0).duplicate())

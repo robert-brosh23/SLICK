@@ -3,7 +3,7 @@ extends Node2D
 
 @export var collison_poly : CollisionPolygon2D
 @export var health_spawn_cooldown: float
-
+@export var health_spawn_increase: float
 
 var triangles : Array[PackedVector2Array]
 var areas : Array[float]
@@ -20,6 +20,7 @@ func _ready():
 func _process(delta: float) -> void:
 	countdown -= delta
 	if countdown <= 0:
+		health_spawn_cooldown += health_spawn_increase
 		countdown = health_spawn_cooldown
 		spawn_health_pack()
 

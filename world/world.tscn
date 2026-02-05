@@ -359,3 +359,4 @@ initial_delay_max = 25.0
 [node name="HealthPickupArea" parent="." unique_id=947997234 instance=ExtResource("10_ov2xu")]
 y_sort_enabled = true
 health_spawn_cooldown = 20.0
+health_spawn_increase = 5.0

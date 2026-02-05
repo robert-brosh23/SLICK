@@ -28,14 +28,23 @@ func _handle_animation():
 	
 func move_and_slide_isometric():
 	velocity.y *= 0.5
-	move_and_slide()
-	if get_slide_collision_count() > 0:
-		var col = get_slide_collision(0)
-		var iso_normal = IsometricUtil.to_iso(col.get_normal()).normalized()
-		velocity = velocity.bounce(iso_normal) * 0.8
-		position += col.get_normal() * 0.5
-		print(velocity)
+
+	var collision = move_and_collide(velocity * get_physics_process_delta_time())
+	if collision:
+		velocity = velocity.bounce(collision.get_normal()) * 0.8
+	
 	velocity.y *= 2.0
+	
+	
+	#velocity.y *= 0.5
+	#move_and_slide()
+	#if get_slide_collision_count() > 0:
+		#var col = get_slide_collision(0)
+		#var iso_normal = IsometricUtil.to_iso(col.get_normal()).normalized()
+		#velocity = velocity.bounce(iso_normal) * 0.8
+		#position += col.get_normal() * 0.5
+		#print(velocity)
+	#velocity.y *= 2.0
 	
 func _ready() -> void:
 	hitbox.Damaged.connect(_player_damaged)
