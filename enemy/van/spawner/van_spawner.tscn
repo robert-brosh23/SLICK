@@ -3,4 +3,5 @@
 [ext_resource type="Script" uid="uid://csl3s7450t5tf" path="res://enemy/van/spawner/van_spawner.gd" id="1_tr85c"]
 
 [node name="VanSpawner" type="Node2D" unique_id=1711116882]
+y_sort_enabled = true
 script = ExtResource("1_tr85c")

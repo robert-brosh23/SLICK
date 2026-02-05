@@ -24,8 +24,8 @@ func _ready():
 			penguin_spawn_info.num_penguins = randi_range(min_num_penguins, max_num_penguins)
 			spawn_infos.append(penguin_spawn_info)
 			
-		var van = Van.spawn_van(position , direction, spawn_infos)
-		add_child(van)
+		var van = Van.spawn_van(global_position, direction, spawn_infos)
+		get_tree().get_first_node_in_group("world").add_child(van)
 		van.handle_spawn_info(van.spawn_info)
 		await get_tree().create_timer(15.0 + (30.0 - 15.0) * exp(-8 * elapsed)).timeout
 		

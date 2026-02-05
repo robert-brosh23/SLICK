@@ -6,6 +6,8 @@ extends EnemyBaseState
 var active := false
 var y_move := 0.0
 
+var time_to_live : float
+
 func _ready():
 	var y_move_timer := Timer.new()
 	y_move_timer.wait_time = 1.0
@@ -17,6 +19,7 @@ func enter():
 	super()
 	animation_tree.set("parameters/conditions/cry", true)
 	active = true
+	time_to_live = 20.0
 	
 func exit():
 	super()
@@ -25,10 +28,14 @@ func exit():
 	active = false
 
 func physics_update(_delta: float):
-	var x_vel : float = 2000.0
+	var x_vel : float = 4000.0
 	if !enemy.run_away_direction:
 		x_vel *= -1
 	enemy.velocity =  Vector2(x_vel, y_move) * _delta
+	
+	time_to_live -= _delta
+	if time_to_live <= 0:
+		enemy.queue_free()
 			
 func on_y_move_timer_timout():
 	y_move = randf_range(-1000.0, 1000.0)

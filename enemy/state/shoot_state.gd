@@ -2,7 +2,7 @@ class_name ShootState
 extends EnemyBaseState
 
 const COUNTDOWN_TO_SHOOT := .25
-const RECOIL_COUNTDOWN := 1.0
+const RECOIL_COUNTDOWN := 0.95
 
 var player: Player
 var shoot_countdown : float
@@ -32,7 +32,7 @@ func physics_update(_delta: float):
 
 func shoot_bullet():
 	var direction := (Vector2.LEFT.rotated(player.get_angle_to(enemy.global_position)) * Vector2(1.0, 2.0)).normalized()
-	get_tree().get_first_node_in_group("main").add_child(Bullet.create_bullet(enemy.global_position, direction))
+	get_tree().get_first_node_in_group("world").add_child(Bullet.create_bullet(enemy.global_position, direction))
 	
 func on_damage_taken():
 	Transitioned.emit(self, "DeadState")

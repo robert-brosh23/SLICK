@@ -2,7 +2,6 @@ class_name DeadState
 extends EnemyBaseState
 
 @export var base_sprite: Sprite2D
-@export var animation_sprite: Sprite2D
 
 func enter() -> void:
 	super()

@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://c2b8r851478jb" path="res://player/state/skate_state.gd" id="5_n1sff"]
 [ext_resource type="Script" uid="uid://ut4jpgeb3pyv" path="res://player/state/charge_state.gd" id="6_afben"]
 [ext_resource type="PackedScene" uid="uid://3a7rvhu374cn" path="res://player/snow_spray_particles/spawner/particle_spawner.tscn" id="9_hg6s5"]
+[ext_resource type="AnimationNodeBlendSpace2D" uid="uid://bcq64myf0fj7q" path="res://player/animation/movement.tres" id="10_2ieo8"]
 [ext_resource type="PackedScene" uid="uid://gdei2nsvuf6g" path="res://util/Hitbox/hitbox.tscn" id="10_8t03j"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hg6s5"]
@@ -54,6 +55,58 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [4]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerAnimator:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hitbox:monitorable")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_tqiix"]
+resource_name = "damaged"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerAnimator:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false, true, false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hitbox:monitorable")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.033333335, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
 }
 
 [sub_resource type="Animation" id="Animation_hg6s5"]
@@ -179,6 +232,7 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tqiix"]
 _data = {
 &"RESET": SubResource("Animation_rgyib"),
+&"damaged": SubResource("Animation_tqiix"),
 &"skate_down": SubResource("Animation_hg6s5"),
 &"skate_down_left": SubResource("Animation_8t03j"),
 &"skate_down_right": SubResource("Animation_2ieo8"),
@@ -189,53 +243,27 @@ _data = {
 &"skate_up_right": SubResource("Animation_32hag")
 }
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rgyib"]
-animation = &"skate_up"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hg6s5"]
-animation = &"skate_right"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8t03j"]
-animation = &"skate_down"
-
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2ieo8"]
-animation = &"skate_left"
+animation = &"damaged"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ebec5"]
-animation = &"skate_down_left"
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_ebec5"]
+mix_mode = 1
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yllr7"]
-animation = &"skate_down_right"
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_yllr7"]
+graph_offset = Vector2(-532.6886, -14.58252)
+nodes/output/position = Vector2(1300, 100)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_2ieo8")
+nodes/Animation/position = Vector2(800, 260)
+nodes/AnimationNodeBlendSpace2D/node = ExtResource("10_2ieo8")
+nodes/AnimationNodeBlendSpace2D/position = Vector2(660, 20)
+nodes/OneShot/node = SubResource("AnimationNodeOneShot_ebec5")
+nodes/OneShot/position = Vector2(1060, 60)
+node_connections = [&"output", 0, &"OneShot", &"OneShot", 0, &"AnimationNodeBlendSpace2D", &"OneShot", 1, &"Animation"]
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kb6p2"]
-animation = &"skate_up_right"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wodsf"]
-animation = &"skate_up_left"
-
-[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_e7oew"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_rgyib")
-blend_point_0/pos = Vector2(0, 1)
-blend_point_1/node = SubResource("AnimationNodeAnimation_hg6s5")
-blend_point_1/pos = Vector2(1, 0)
-blend_point_2/node = SubResource("AnimationNodeAnimation_8t03j")
-blend_point_2/pos = Vector2(0, -1)
-blend_point_3/node = SubResource("AnimationNodeAnimation_2ieo8")
-blend_point_3/pos = Vector2(-1, 0)
-blend_point_4/node = SubResource("AnimationNodeAnimation_ebec5")
-blend_point_4/pos = Vector2(-1, -1)
-blend_point_5/node = SubResource("AnimationNodeAnimation_yllr7")
-blend_point_5/pos = Vector2(1, -1)
-blend_point_6/node = SubResource("AnimationNodeAnimation_kb6p2")
-blend_point_6/pos = Vector2(1, 1)
-blend_point_7/node = SubResource("AnimationNodeAnimation_wodsf")
-blend_point_7/pos = Vector2(-1, 1)
-blend_mode = 1
-
-[node name="Player" type="CharacterBody2D" unique_id=1850284369 node_paths=PackedStringArray("animation_tree", "player_rotation", "sprite") groups=["player"]]
+[node name="Player" type="CharacterBody2D" unique_id=1850284369 node_paths=PackedStringArray("animation_tree", "player_rotation", "sprite", "hitbox", "animation_player") groups=["player"]]
 texture_filter = 1
 collision_layer = 16
-collision_mask = 14
+collision_mask = 142
 motion_mode = 1
 slide_on_ceiling = false
 wall_min_slide_angle = 1.5707964
@@ -244,6 +272,8 @@ script = ExtResource("1_ktmdc")
 animation_tree = NodePath("PlayerAnimator/AnimationTree")
 player_rotation = NodePath("PlayerRotation")
 sprite = NodePath("PlayerAnimator/PlayerSprite")
+hitbox = NodePath("Hitbox")
+animation_player = NodePath("PlayerAnimator/AnimationPlayer")
 
 [node name="HelpArrow" type="Node2D" parent="." unique_id=1175714149 node_paths=PackedStringArray("player")]
 position = Vector2(0, -14)
@@ -308,12 +338,16 @@ frame = 4
 
 [node name="AnimationTree" type="AnimationTree" parent="PlayerAnimator" unique_id=1514366382]
 root_node = NodePath("../..")
-tree_root = SubResource("AnimationNodeBlendSpace2D_e7oew")
+tree_root = SubResource("AnimationNodeBlendTree_yllr7")
 anim_player = NodePath("../AnimationPlayer")
-parameters/blend_position = Vector2(-0.47833264, 0.04979253)
+parameters/AnimationNodeBlendSpace2D/blend_position = Vector2(0, 0)
+parameters/OneShot/active = false
+parameters/OneShot/internal_active = false
+parameters/OneShot/request = 0
 
 [node name="Hitbox" parent="." unique_id=23520686 instance=ExtResource("10_8t03j")]
 collision_layer = 64
+collision_mask = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1222841395]
 z_index = 1

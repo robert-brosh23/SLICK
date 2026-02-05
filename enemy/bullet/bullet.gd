@@ -1,9 +1,9 @@
 class_name Bullet
 extends Node2D
 
-const SPEED := 150.0
+const SPEED := 200.0
 const SCENE := preload("res://enemy/bullet/bullet.tscn")
-const LIFETIME := 20.0
+const LIFETIME := 2.0
 
 @export var hurtbox: HurtBox
 

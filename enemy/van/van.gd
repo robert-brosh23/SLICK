@@ -66,11 +66,11 @@ func let_penguin_out(num_penguins: int = 1):
 		
 		var pos
 		if direction:
-			pos = Vector2(-6,5)
+			pos = Vector2(-6,14)
 		else:
-			pos = Vector2(6,5)
+			pos = Vector2(6,14)
 		var penguin = BasicPenguin.spawn_penguin(global_position + pos)   
-		get_tree().root.add_child(penguin)
+		get_tree().get_first_node_in_group("world").add_child(penguin)
 	animation_player.play("close_door")
 	await animation_player.animation_finished
 	animation_player.play("drive")

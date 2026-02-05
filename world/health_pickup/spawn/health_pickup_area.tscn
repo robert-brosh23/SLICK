@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://dx7rf1tb58udd"]
+
+[ext_resource type="Script" uid="uid://dgfkna64ex5sv" path="res://world/health_pickup/spawn/health_pickup_area.gd" id="1_8udvc"]
+
+[node name="HealthPickupArea" type="Node2D" unique_id=947997234 node_paths=PackedStringArray("collison_poly")]
+script = ExtResource("1_8udvc")
+collison_poly = NodePath("Area2D/CollisionPolygon2D")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1697366423]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D" unique_id=1329196895]
+polygon = PackedVector2Array(-3, -1, 2, 723, 230, 603, 234, 237, 416, 151, 594, 243, 403, 410, 300, 416, 276, 607, 468, 715, 841, 530, 610, 369, 1080, 84, 343, -338, 809, -584, 176, -919, -31, -825, 214, -704, 41, -583, -159, -677, -111, -794, -406, -937, -926, -686, -1157, -758, -1185, -828, -980, -917, -1081, -982, -2242, -399, -1767, -175, -1483, -354, -1306, -310, -1395, -150, -1583, -219, -1687, -122, -1091, 145, -574, -222, -403, -103, -606, 15, -723, -62, -1071, 161, -40, 710)

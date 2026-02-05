@@ -130,6 +130,18 @@ advance_condition = &"cry"
 advance_mode = 2
 advance_condition = &"slip"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_73pyr"]
+advance_mode = 2
+advance_condition = &"slip"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_60kjy"]
+advance_mode = 2
+advance_condition = &"march"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kno77"]
+advance_mode = 2
+advance_condition = &"shoot"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_0u6ws"]
 states/End/position = Vector2(1064, 115)
 states/March/node = ExtResource("12_laiju")
@@ -145,8 +157,8 @@ states/idle/node = SubResource("AnimationNodeAnimation_laiju")
 states/idle/position = Vector2(377.19922, 170)
 states/slip_and_fall/node = SubResource("AnimationNodeAnimation_a76vu")
 states/slip_and_fall/position = Vector2(726.1992, -51)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_0u6ws"), "idle", "March", SubResource("AnimationNodeStateMachineTransition_6m2nc"), "idle", "Shoot", SubResource("AnimationNodeStateMachineTransition_esoqs"), "Shoot", "idle", SubResource("AnimationNodeStateMachineTransition_htyao"), "March", "idle", SubResource("AnimationNodeStateMachineTransition_oxwp2"), "March", "Shoot", SubResource("AnimationNodeStateMachineTransition_slsjj"), "Shoot", "March", SubResource("AnimationNodeStateMachineTransition_trpos"), "March", "slip_and_fall", SubResource("AnimationNodeStateMachineTransition_f1bar"), "Shoot", "slip_and_fall", SubResource("AnimationNodeStateMachineTransition_w8e7e"), "idle", "slip_and_fall", SubResource("AnimationNodeStateMachineTransition_e1rnk"), "slip_and_fall", "get_up", SubResource("AnimationNodeStateMachineTransition_1ylor"), "get_up", "cry_and_run_away", SubResource("AnimationNodeStateMachineTransition_a76vu"), "cry_and_run_away", "slip_and_fall", SubResource("AnimationNodeStateMachineTransition_0s4x3")]
-graph_offset = Vector2(-791.8008, -199)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_0u6ws"), "idle", "March", SubResource("AnimationNodeStateMachineTransition_6m2nc"), "idle", "Shoot", SubResource("AnimationNodeStateMachineTransition_esoqs"), "Shoot", "idle", SubResource("AnimationNodeStateMachineTransition_htyao"), "March", "idle", SubResource("AnimationNodeStateMachineTransition_oxwp2"), "March", "Shoot", SubResource("AnimationNodeStateMachineTransition_slsjj"), "Shoot", "March", SubResource("AnimationNodeStateMachineTransition_trpos"), "March", "slip_and_fall", SubResource("AnimationNodeStateMachineTransition_f1bar"), "Shoot", "slip_and_fall", SubResource("AnimationNodeStateMachineTransition_w8e7e"), "idle", "slip_and_fall", SubResource("AnimationNodeStateMachineTransition_e1rnk"), "slip_and_fall", "get_up", SubResource("AnimationNodeStateMachineTransition_1ylor"), "get_up", "cry_and_run_away", SubResource("AnimationNodeStateMachineTransition_a76vu"), "cry_and_run_away", "slip_and_fall", SubResource("AnimationNodeStateMachineTransition_0s4x3"), "Start", "slip_and_fall", SubResource("AnimationNodeStateMachineTransition_73pyr"), "Start", "March", SubResource("AnimationNodeStateMachineTransition_60kjy"), "Start", "Shoot", SubResource("AnimationNodeStateMachineTransition_kno77")]
+graph_offset = Vector2(-667.8008, -121)
 
 [sub_resource type="Animation" id="Animation_0u6ws"]
 length = 0.001
@@ -1323,10 +1335,9 @@ script = ExtResource("9_ppsd6")
 enemy = NodePath("../..")
 animation_tree = NodePath("../../AnimationTree")
 
-[node name="DeadState" parent="StateMatchine" unique_id=2080475046 node_paths=PackedStringArray("base_sprite", "animation_sprite", "enemy", "animation_tree") instance=ExtResource("5_jcdtq")]
+[node name="DeadState" parent="StateMatchine" unique_id=2080475046 node_paths=PackedStringArray("base_sprite", "enemy", "animation_tree") instance=ExtResource("5_jcdtq")]
 script = ExtResource("7_jcdtq")
 base_sprite = NodePath("../../BaseSprite")
-animation_sprite = NodePath("")
 enemy = NodePath("../..")
 animation_tree = NodePath("../../AnimationTree")
 
