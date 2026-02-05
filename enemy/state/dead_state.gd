@@ -6,6 +6,9 @@ extends EnemyBaseState
 func enter() -> void:
 	super()
 	animation_tree.set("parameters/conditions/slip", true)
+	if !enemy.retired:
+		enemy.retired = true
+		SignalBus.enemy_retired.emit()
 	enemy.collision_mask = (1 << 2) | (1 << 3) | (1 << 4)
 	await_get_up()
 	

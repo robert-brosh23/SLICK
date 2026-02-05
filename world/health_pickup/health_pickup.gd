@@ -12,7 +12,6 @@ static func spawn_health_pickup(_pos: Vector2) -> HealthPickup:
 	return pickup
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	print(body)
 	if body is Player:
 		SignalBus.player_healed.emit(1)
 		queue_free()

@@ -8,6 +8,7 @@ const SCENE = preload("res://enemy/basic_penguin.tscn")
 @export var state_machine: StateMachine
 
 var run_away_direction : bool
+var retired : bool
 
 static func spawn_penguin(_position: Vector2) -> BasicPenguin:
 	var enemy: BasicPenguin = SCENE.instantiate()
@@ -17,6 +18,7 @@ static func spawn_penguin(_position: Vector2) -> BasicPenguin:
 func _ready():
 	hitbox.Damaged.connect(_penguin_damaged)
 	run_away_direction = randf() < 0.5
+	retired = false
 	
 func _physics_process(delta: float) -> void:
 	move_and_slide_isometric()

@@ -33,7 +33,8 @@ func move_and_slide_isometric():
 		var col = get_slide_collision(0)
 		var iso_normal = IsometricUtil.to_iso(col.get_normal()).normalized()
 		velocity = velocity.bounce(iso_normal) * 0.8
-
+		position += col.get_normal() * 0.5
+		print(velocity)
 	velocity.y *= 2.0
 	
 func _ready() -> void:

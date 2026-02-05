@@ -142,6 +142,10 @@ advance_condition = &"march"
 advance_mode = 2
 advance_condition = &"shoot"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jcph8"]
+advance_mode = 2
+advance_condition = &"slip"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_0u6ws"]
 states/End/position = Vector2(1064, 115)
 states/March/node = ExtResource("12_laiju")
@@ -157,7 +161,7 @@ states/idle/node = SubResource("AnimationNodeAnimation_laiju")
 states/idle/position = Vector2(377.19922, 170)
 states/slip_and_fall/node = SubResource("AnimationNodeAnimation_a76vu")
 states/slip_and_fall/position = Vector2(726.1992, -51)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_0u6ws"), "idle", "March", SubResource("AnimationNodeStateMachineTransition_6m2nc"), "idle", "Shoot", SubResource("AnimationNodeStateMachineTransition_esoqs"), "Shoot", "idle", SubResource("AnimationNodeStateMachineTransition_htyao"), "March", "idle", SubResource("AnimationNodeStateMachineTransition_oxwp2"), "March", "Shoot", SubResource("AnimationNodeStateMachineTransition_slsjj"), "Shoot", "March", SubResource("AnimationNodeStateMachineTransition_trpos"), "March", "slip_and_fall", SubResource("AnimationNodeStateMachineTransition_f1bar"), "Shoot", "slip_and_fall", SubResource("AnimationNodeStateMachineTransition_w8e7e"), "idle", "slip_and_fall", SubResource("AnimationNodeStateMachineTransition_e1rnk"), "slip_and_fall", "get_up", SubResource("AnimationNodeStateMachineTransition_1ylor"), "get_up", "cry_and_run_away", SubResource("AnimationNodeStateMachineTransition_a76vu"), "cry_and_run_away", "slip_and_fall", SubResource("AnimationNodeStateMachineTransition_0s4x3"), "Start", "slip_and_fall", SubResource("AnimationNodeStateMachineTransition_73pyr"), "Start", "March", SubResource("AnimationNodeStateMachineTransition_60kjy"), "Start", "Shoot", SubResource("AnimationNodeStateMachineTransition_kno77")]
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_0u6ws"), "idle", "March", SubResource("AnimationNodeStateMachineTransition_6m2nc"), "idle", "Shoot", SubResource("AnimationNodeStateMachineTransition_esoqs"), "Shoot", "idle", SubResource("AnimationNodeStateMachineTransition_htyao"), "March", "idle", SubResource("AnimationNodeStateMachineTransition_oxwp2"), "March", "Shoot", SubResource("AnimationNodeStateMachineTransition_slsjj"), "Shoot", "March", SubResource("AnimationNodeStateMachineTransition_trpos"), "March", "slip_and_fall", SubResource("AnimationNodeStateMachineTransition_f1bar"), "Shoot", "slip_and_fall", SubResource("AnimationNodeStateMachineTransition_w8e7e"), "idle", "slip_and_fall", SubResource("AnimationNodeStateMachineTransition_e1rnk"), "slip_and_fall", "get_up", SubResource("AnimationNodeStateMachineTransition_1ylor"), "get_up", "cry_and_run_away", SubResource("AnimationNodeStateMachineTransition_a76vu"), "cry_and_run_away", "slip_and_fall", SubResource("AnimationNodeStateMachineTransition_0s4x3"), "Start", "slip_and_fall", SubResource("AnimationNodeStateMachineTransition_73pyr"), "Start", "March", SubResource("AnimationNodeStateMachineTransition_60kjy"), "Start", "Shoot", SubResource("AnimationNodeStateMachineTransition_kno77"), "get_up", "slip_and_fall", SubResource("AnimationNodeStateMachineTransition_jcph8")]
 graph_offset = Vector2(-667.8008, -121)
 
 [sub_resource type="Animation" id="Animation_0u6ws"]
@@ -1348,7 +1352,6 @@ enemy = NodePath("../..")
 animation_tree = NodePath("../../AnimationTree")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1054290516]
-visible = false
 rotation = -1.5707964
 shape = SubResource("CapsuleShape2D_sqcg3")
 

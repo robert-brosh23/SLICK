@@ -59,7 +59,7 @@ texture_region_size = Vector2i(16, 24)
 1:0/0 = 0
 1:0/0/texture_origin = Vector2i(0, 8)
 1:0/0/y_sort_origin = -4
-1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(7.990242, -5.644929, 7.9578934, -2.9599483, -8.151989, 5.2243896, -8.184341, 2.474711)
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(7.990242, -5.644929, 8.033819, -3.0611396, -8.151989, 5.2243896, -8.184341, 2.474711)
 2:0/0 = 0
 2:0/0/texture_origin = Vector2i(0, 8)
 2:0/0/y_sort_origin = -4
@@ -357,4 +357,5 @@ initial_delay_min = 15.0
 initial_delay_max = 25.0
 
 [node name="HealthPickupArea" parent="." unique_id=947997234 instance=ExtResource("10_ov2xu")]
+y_sort_enabled = true
 health_spawn_cooldown = 20.0

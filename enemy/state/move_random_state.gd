@@ -35,7 +35,7 @@ func physics_update(_delta: float):
 		
 	time_left -= _delta
 	if time_left <= 0:
-		if randf() < 0.5:
+		if randf() < 0.7:
 			Transitioned.emit(self, "MoveRandomState")
 		else:
 			Transitioned.emit(self, "IdleState")

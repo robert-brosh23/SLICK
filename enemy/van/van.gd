@@ -20,7 +20,6 @@ var moving_right = false
 static func spawn_van(pos: Vector2, _direction: bool, penguin_directions: Array[PenguinSpawnInfo]) -> Van:
 	var van = SCENE.instantiate() as Van
 	van.global_position = pos
-	print(van.global_position     )
 	van.direction = _direction
 	van.spawn_info = penguin_directions
 	return van

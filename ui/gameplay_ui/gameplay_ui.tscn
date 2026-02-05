@@ -2,8 +2,9 @@
 
 [ext_resource type="Script" uid="uid://dxin4g78qgyiy" path="res://ui/gameplay_ui/gameplay_ui.gd" id="1_671ak"]
 [ext_resource type="Texture2D" uid="uid://c4kdcmtyjrcdd" path="res://sprites/player_life.png" id="2_7e4rd"]
+[ext_resource type="FontFile" uid="uid://b0rxba54kbo4h" path="res://util/fonts/m6x11plus.ttf" id="3_h414r"]
 
-[node name="GameplayUI" type="Control" unique_id=84776083 node_paths=PackedStringArray("life1", "lives_hbox")]
+[node name="GameplayUI" type="Control" unique_id=84776083 node_paths=PackedStringArray("life1", "lives_hbox", "enemies_retired_label")]
 texture_filter = 1
 layout_mode = 3
 anchors_preset = 15
@@ -14,6 +15,7 @@ grow_vertical = 2
 script = ExtResource("1_671ak")
 life1 = NodePath("MarginContainer/Lives/HBoxContainer/Life1")
 lives_hbox = NodePath("MarginContainer/Lives/HBoxContainer")
+enemies_retired_label = NodePath("MarginContainer/EnemyRetired/HBoxContainer/number")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1985332545]
 layout_mode = 1
@@ -38,3 +40,42 @@ layout_mode = 2
 [node name="Life1" type="TextureRect" parent="MarginContainer/Lives/HBoxContainer" unique_id=1378758119]
 layout_mode = 2
 texture = ExtResource("2_7e4rd")
+
+[node name="EnemyRetired" type="MarginContainer" parent="MarginContainer" unique_id=1569967305]
+clip_contents = true
+custom_minimum_size = Vector2(150, 40)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_constants/margin_bottom = -10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/EnemyRetired" unique_id=1405534453]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="label" type="RichTextLabel" parent="MarginContainer/EnemyRetired/HBoxContainer" unique_id=318387310]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_colors/default_color = Color(0.65882355, 0.14509805, 0.7294118, 1)
+theme_override_fonts/normal_font = ExtResource("3_h414r")
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+text = "S.N.O. Retired:"
+fit_content = true
+autowrap_mode = 0
+vertical_alignment = 1
+
+[node name="number" type="RichTextLabel" parent="MarginContainer/EnemyRetired/HBoxContainer" unique_id=1768552969]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_colors/default_color = Color(0.65882355, 0.14509805, 0.7294118, 1)
+theme_override_fonts/normal_font = ExtResource("3_h414r")
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+text = "0"
+fit_content = true
+autowrap_mode = 0
+vertical_alignment = 1
