@@ -1,5 +1,6 @@
 [gd_scene format=4 uid="uid://b0ehf1seelnv6"]
 
+[ext_resource type="Script" uid="uid://su3eea16nsi5" path="res://world/world.gd" id="1_ov2xu"]
 [ext_resource type="Texture2D" uid="uid://bjry5y7dhj0kv" path="res://sprites/iso_tileset.png" id="2_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://cx12wbepve0ru" path="res://player/player.tscn" id="2_h2yge"]
 [ext_resource type="Texture2D" uid="uid://cfbm1fi8n5gsu" path="res://sprites/Shrubs_snowy_spritesheet.png" id="2_kek77"]
@@ -263,6 +264,7 @@ sources/2 = SubResource("TileSetAtlasSource_5vw27")
 
 [node name="World" type="Node2D" unique_id=1430748571 groups=["world"]]
 y_sort_enabled = true
+script = ExtResource("1_ov2xu")
 
 [node name="Player4" parent="." unique_id=1850284369 instance=ExtResource("2_h2yge")]
 position = Vector2(-2126, -430)
@@ -358,5 +360,3 @@ initial_delay_max = 25.0
 
 [node name="HealthPickupArea" parent="." unique_id=947997234 instance=ExtResource("10_ov2xu")]
 y_sort_enabled = true
-health_spawn_cooldown = 20.0
-health_spawn_increase = 5.0

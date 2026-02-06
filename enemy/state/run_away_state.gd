@@ -20,6 +20,9 @@ func enter():
 	animation_tree.set("parameters/conditions/cry", true)
 	active = true
 	time_to_live = 20.0
+	if enemy.aggroed:
+		enemy.aggroed = false
+		SignalBus.enemy_left_range.emit()
 	
 func exit():
 	super()

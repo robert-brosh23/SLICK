@@ -11,6 +11,9 @@ func enter():
 	super() 
 	animation_tree.set("parameters/conditions/march", true)
 	player = get_tree().get_first_node_in_group("player")
+	if !enemy.aggroed:
+		enemy.aggroed = true
+		SignalBus.enemy_entered_range.emit()
 	
 func exit():
 	super()

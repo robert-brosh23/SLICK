@@ -14,6 +14,9 @@ func enter() -> void:
 	player = get_tree().get_first_node_in_group("player")
 	shoot_countdown = COUNTDOWN_TO_SHOOT
 	recoil_countdown = RECOIL_COUNTDOWN + COUNTDOWN_TO_SHOOT
+	if !enemy.aggroed:
+		enemy.aggroed = true
+		SignalBus.enemy_entered_range.emit()
 	
 func exit():
 	super()

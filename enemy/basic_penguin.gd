@@ -9,6 +9,7 @@ const SCENE = preload("res://enemy/basic_penguin.tscn")
 
 var run_away_direction : bool
 var retired : bool
+var aggroed : bool = false
 
 static func spawn_penguin(_position: Vector2) -> BasicPenguin:
 	var enemy: BasicPenguin = SCENE.instantiate()

@@ -2,6 +2,7 @@ class_name ParticleSpawner
 extends Node2D
 
 @export var continuous_spawner : GPUParticles2D
+@export var burst_spawner : GPUParticles2D
 @export var player : Player
 
 var last_rotation : float
@@ -35,10 +36,24 @@ func spawn_continuous():
 	continuous_spawner.emitting = true
 	spawn_hurtboxes()
 	
+func spawn_burst(charge_amount):
+	var angle = Vector2.UP.rotated(player.player_rotation.rotation) * Vector2(-1.0,-1.0)
+	var vel = charge_amount * .5
+	spawn_burst_hurtboxes(angle, vel)
+	add_child(BurstSpawner.create_burst_spawner(angle, vel))
+	
 func spawn_hurtboxes():
 	while continuous_spawner.emitting:
 		get_tree().root.add_child(SnowSprayHurtbox.spawn_and_shoot(player.global_position, particle_spawn_angle, particle_velocity, 1))
 		await get_tree().create_timer(.1).timeout
+		
+func spawn_burst_hurtboxes(angle: Vector2, burst_velocity: float):
+	get_tree().root.add_child(SnowSprayHurtbox.spawn_and_shoot(player.global_position, angle.rotated(-.35), burst_velocity, 1))
+	get_tree().root.add_child(SnowSprayHurtbox.spawn_and_shoot(player.global_position, angle.rotated(-.15), burst_velocity, 1))
+	get_tree().root.add_child(SnowSprayHurtbox.spawn_and_shoot(player.global_position, angle, burst_velocity, 1))
+	get_tree().root.add_child(SnowSprayHurtbox.spawn_and_shoot(player.global_position, angle.rotated(.15), burst_velocity, 1))
+	get_tree().root.add_child(SnowSprayHurtbox.spawn_and_shoot(player.global_position, angle.rotated(.35), burst_velocity, 1))
+		
 
 func stop_spawn_continuous():
 	get_tree().root.add_child(SnowSprayHurtbox.spawn_and_shoot(player.global_position, particle_spawn_angle, particle_velocity, 1))

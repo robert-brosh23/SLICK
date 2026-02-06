@@ -17,6 +17,9 @@ func enter():
 	time_left = randf_range(MIN_TIME_LEFT, MAX_TIME_LEFT)
 	speed = randf_range(MIN_SPEED, MAX_SPEED)
 	direction = Vector2.RIGHT.rotated(randf_range(0, 2*PI))
+	if enemy.aggroed:
+		enemy.aggroed = false
+		SignalBus.enemy_left_range.emit()
 	
 func exit():
 	super()

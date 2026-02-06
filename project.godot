@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 SignalBus="*uid://owrx37yuf0y5"
+AudioPlayer="*uid://dls4vt5ru6fds"
 
 [display]
 
@@ -83,6 +84,7 @@ shift={
 [rendering]
 
 rendering_device/driver.windows="d3d12"
+textures/vram_compression/import_etc2_astc=true
 2d/snap/snap_2d_transforms_to_pixel=true
 2d/snap/snap_2d_vertices_to_pixel=true
 2d/size/window_height_override=1080

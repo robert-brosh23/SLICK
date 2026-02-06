@@ -12,6 +12,9 @@ const FRICTION_BASE := .1
 var force := Vector2(0.0,0.0)
 var friction : float = FRICTION_BASE
 
+var bounce_noise := preload("res://audio/Wood Knock A.wav")
+var damaged_noise := preload("res://audio/Cozy UI B2.wav")
+
 func _physics_process(delta: float) -> void:
 	_handle_slip(delta)
 	_handle_animation()
@@ -32,23 +35,15 @@ func move_and_slide_isometric():
 	var collision = move_and_collide(velocity * get_physics_process_delta_time())
 	if collision:
 		velocity = velocity.bounce(collision.get_normal()) * 0.8
+		if velocity.length() > 30:
+			AudioPlayer.play_sound(bounce_noise)
 	
 	velocity.y *= 2.0
 	
-	
-	#velocity.y *= 0.5
-	#move_and_slide()
-	#if get_slide_collision_count() > 0:
-		#var col = get_slide_collision(0)
-		#var iso_normal = IsometricUtil.to_iso(col.get_normal()).normalized()
-		#velocity = velocity.bounce(iso_normal) * 0.8
-		#position += col.get_normal() * 0.5
-		#print(velocity)
-	#velocity.y *= 2.0
-	
 func _ready() -> void:
 	hitbox.Damaged.connect(_player_damaged)
-	
+
 func _player_damaged(damage: int):
 	animation_tree["parameters/OneShot/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
+	AudioPlayer.play_sound(damaged_noise)
 	SignalBus.player_damaged.emit()

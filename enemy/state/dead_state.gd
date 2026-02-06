@@ -11,6 +11,9 @@ func enter() -> void:
 		SignalBus.enemy_retired.emit()
 	enemy.collision_mask = (1 << 2) | (1 << 3) | (1 << 4)
 	await_get_up()
+	if enemy.aggroed:
+		enemy.aggroed = false
+		SignalBus.enemy_left_range.emit()
 	
 func await_get_up() -> void:
 	await get_tree().create_timer(3.0).timeout

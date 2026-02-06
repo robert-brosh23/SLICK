@@ -9,6 +9,9 @@ func enter() -> void:
 	animation_tree.set("parameters/conditions/idle", true)
 	player = get_tree().get_first_node_in_group("player")
 	time_left = randf_range(MIN_TIME_LEFT, MAX_TIME_LEFT)
+	if enemy.aggroed:
+		enemy.aggroed = false
+		SignalBus.enemy_left_range.emit()
 	
 func exit() -> void:
 	super()

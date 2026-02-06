@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="OvaniSong" format=3 uid="uid://byjta776kkthu"]
+
+[ext_resource type="AudioStream" uid="uid://cmvl6hicdelmx" path="res://audio/Blizzard (RT 2.419)/Electronic Vol10 Blizzard Intensity 1.wav" id="1_630x1"]
+[ext_resource type="AudioStream" uid="uid://dkhinstjvr3u2" path="res://audio/Blizzard (RT 2.419)/Electronic Vol10 Blizzard Intensity 2.wav" id="2_40xpr"]
+[ext_resource type="AudioStream" uid="uid://wjn1op6g7tcf" path="res://audio/Blizzard (RT 2.419)/Electronic Vol10 Blizzard Main.wav" id="3_xjlnm"]
+[ext_resource type="AudioStream" uid="uid://cciyjkb71asbi" path="res://audio/Blizzard (RT 2.419)/Electronic Vol10 Blizzard Cut 30.wav" id="4_8eqnc"]
+[ext_resource type="AudioStream" uid="uid://cqx3fd8gl7m7y" path="res://audio/Blizzard (RT 2.419)/Electronic Vol10 Blizzard Cut 60.wav" id="5_ne4mj"]
+[ext_resource type="Script" uid="uid://6wkwid8imv3b" path="res://OvaniPlugin/OvaniSong.gd" id="6_ygp82"]
+
+[resource]
+script = ExtResource("6_ygp82")
+Intensity1 = ExtResource("1_630x1")
+Intensity2 = ExtResource("2_40xpr")
+Intensity3 = ExtResource("3_xjlnm")
+Loop30 = ExtResource("4_8eqnc")
+Loop60 = ExtResource("5_ne4mj")
+ReverbTail = 2.419
+metadata/_custom_type_script = "uid://6wkwid8imv3b"
