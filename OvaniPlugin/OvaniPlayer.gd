@@ -34,7 +34,7 @@ extends Node
 @export var PlayInEditor : bool = false;
 
 ## This is the Godot Audio Bus that your music will play through. Can be assigned dynamically.
-@export var Bus : StringName = "Master":
+@export var Bus : StringName = "Music":
 	get:
 		if _audioPlayer != null && !Engine.is_editor_hint():
 			return _audioPlayer.bus;
@@ -148,6 +148,7 @@ func _constructPolySoundManager(song : OvaniSong) -> PolySoundManager:
  
 func _ready():
 	_audioPlayer = AudioStreamPlayer.new();
+	Bus = "Music"
 	_audioPlayer.stream = AudioStreamPolyphonic.new();
 	add_child(_audioPlayer, INTERNAL_MODE_BACK);
 	_audioPlayer.owner = null;

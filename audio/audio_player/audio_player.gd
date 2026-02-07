@@ -1,6 +1,6 @@
 extends Node
 
-const STARTING_VOLUME_DB := -15.0
+const STARTING_VOLUME_DB := -10.0
 
 var master_volume := STARTING_VOLUME_DB
 var music_volume := STARTING_VOLUME_DB

@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="OvaniSong" format=3 uid="uid://bbjp5xw1ft82y"]
+
+[ext_resource type="Script" uid="uid://6wkwid8imv3b" path="res://OvaniPlugin/OvaniSong.gd" id="1_gb7m2"]
+[ext_resource type="AudioStream" uid="uid://bfa3ywtrpiqjq" path="res://audio/Moon Eyes (RT 3.57)/Electronic Vol10 Moon Eyes Intensity 1.wav" id="1_mbl3g"]
+[ext_resource type="AudioStream" uid="uid://3jffn8iyvdlm" path="res://audio/Moon Eyes (RT 3.57)/Electronic Vol10 Moon Eyes Intensity 2.wav" id="2_6v854"]
+[ext_resource type="AudioStream" uid="uid://bwcq2u27ccn7n" path="res://audio/Moon Eyes (RT 3.57)/Electronic Vol10 Moon Eyes Main.wav" id="3_jm5km"]
+[ext_resource type="AudioStream" uid="uid://b4qpm145xyqj4" path="res://audio/Moon Eyes (RT 3.57)/Electronic Vol10 Moon Eyes Cut 30.wav" id="4_gthnf"]
+[ext_resource type="AudioStream" uid="uid://cv66cpnvfoudr" path="res://audio/Moon Eyes (RT 3.57)/Electronic Vol10 Moon Eyes Cut 60.wav" id="5_u3b7t"]
+
+[resource]
+script = ExtResource("1_gb7m2")
+Intensity1 = ExtResource("1_mbl3g")
+Intensity2 = ExtResource("2_6v854")
+Intensity3 = ExtResource("3_jm5km")
+Loop30 = ExtResource("4_gthnf")
+Loop60 = ExtResource("5_u3b7t")
+ReverbTail = 3.57
+metadata/_custom_type_script = "uid://6wkwid8imv3b"

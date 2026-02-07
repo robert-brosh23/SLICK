@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cxvm506pbr3ox"
+path="res://.godot/imported/Electronic Vol10 Climb Intensity 2.wav-55b60bd8eb284a155aae51691f71ffde.sample"
+
+[deps]
+
+source_file="res://audio/Climb (RT 3.823)/Electronic Vol10 Climb Intensity 2.wav"
+dest_files=["res://.godot/imported/Electronic Vol10 Climb Intensity 2.wav-55b60bd8eb284a155aae51691f71ffde.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

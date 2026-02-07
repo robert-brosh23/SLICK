@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bfa3ywtrpiqjq"
+path="res://.godot/imported/Electronic Vol10 Moon Eyes Intensity 1.wav-4f92ddde5801e51e38ed40a96b030a7f.sample"
+
+[deps]
+
+source_file="res://audio/Moon Eyes (RT 3.57)/Electronic Vol10 Moon Eyes Intensity 1.wav"
+dest_files=["res://.godot/imported/Electronic Vol10 Moon Eyes Intensity 1.wav-4f92ddde5801e51e38ed40a96b030a7f.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

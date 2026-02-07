@@ -11,10 +11,14 @@ config_version=5
 [application]
 
 config/name="SLICK"
-run/main_scene="uid://bgk5816sdq7kf"
+run/main_scene="uid://ct78j6q58duni"
 config/features=PackedStringArray("4.6", "Forward Plus")
 run/max_fps=60
 config/icon="res://icon.svg"
+
+[audio]
+
+buses/default_bus_layout="uid://v6ncdw7xu6e2"
 
 [autoload]
 
@@ -76,6 +80,7 @@ shift={
 2d_physics/layer_6="bullet_hurtbox"
 2d_physics/layer_7="player_hitbox"
 2d_physics/layer_8="health_pickup"
+2d_physics/layer_9="enemy_check_walls_hurtbox"
 
 [physics]
 

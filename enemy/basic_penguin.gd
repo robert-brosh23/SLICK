@@ -6,6 +6,7 @@ const SCENE = preload("res://enemy/basic_penguin.tscn")
 @export var sprite: Sprite2D
 @export var hitbox: HitBox
 @export var state_machine: StateMachine
+@export var check_walls_hurtbox: HurtBox
 
 var run_away_direction : bool
 var retired : bool

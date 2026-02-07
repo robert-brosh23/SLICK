@@ -1,0 +1,114 @@
+[gd_scene format=3 uid="uid://1pstla7r3cqk"]
+
+[ext_resource type="Script" uid="uid://cvmi8fu6p8vvy" path="res://ui/menus/game_over/game_over_menu.gd" id="1_dm0fm"]
+[ext_resource type="FontFile" uid="uid://b5jqc46nd8338" path="res://util/fonts/m6x11.ttf" id="1_qdku4"]
+[ext_resource type="Texture2D" uid="uid://y4dp6qsu6sqc" path="res://sprites/selection_arrow.png" id="2_dm0fm"]
+[ext_resource type="Script" uid="uid://c3rbnfoxwam8u" path="res://OvaniPlugin/OvaniPlayer.gd" id="4_v8yej"]
+[ext_resource type="Script" uid="uid://6wkwid8imv3b" path="res://OvaniPlugin/OvaniSong.gd" id="5_vr6v0"]
+[ext_resource type="Resource" uid="uid://bnmxosgm6o1ru" path="res://audio/Climb (RT 3.823)/climb.tres" id="6_t1qxt"]
+
+[node name="GameOverMenu" type="Control" unique_id=320536844 node_paths=PackedStringArray("arrow", "options", "ovani_player", "agents_retired_label")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dm0fm")
+arrow = NodePath("MarginContainer/VBoxContainer/HBoxContainer/TextureRect")
+options = [NodePath("MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/Label3"), NodePath("MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/Label5")]
+ovani_player = NodePath("OvaniPlayer")
+agents_retired_label = NodePath("MarginContainer/VBoxContainer/AgentsRetiredNumber")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=411198273]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.050980393, 0.12941177, 0.2784314, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1245898639]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=991514573]
+layout_mode = 2
+theme_override_constants/separation = 25
+alignment = 1
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer" unique_id=974524288]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.50980395, 0.7411765, 1)
+theme_override_fonts/font = ExtResource("1_qdku4")
+theme_override_font_sizes/font_size = 48
+text = "S.N.O. Agents Retired: "
+horizontal_alignment = 1
+
+[node name="AgentsRetiredNumber" type="Label" parent="MarginContainer/VBoxContainer" unique_id=913136788]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.32941177, 0.80784315, 0.654902, 1)
+theme_override_fonts/font = ExtResource("1_qdku4")
+theme_override_font_sizes/font_size = 64
+text = "42"
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1071348707]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.50980395, 0.7411765, 1)
+theme_override_fonts/font = ExtResource("1_qdku4")
+theme_override_font_sizes/font_size = 48
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=659307392]
+layout_mode = 2
+theme_override_constants/separation = 22
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1509770386]
+layout_mode = 2
+size_flags_vertical = 0
+texture = ExtResource("2_dm0fm")
+stretch_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1278881558]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label3" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2" unique_id=1234745962]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.50980395, 0.7411765, 1)
+theme_override_fonts/font = ExtResource("1_qdku4")
+theme_override_font_sizes/font_size = 48
+text = "Play Again"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label5" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2" unique_id=415619593]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.50980395, 0.7411765, 1)
+theme_override_fonts/font = ExtResource("1_qdku4")
+theme_override_font_sizes/font_size = 48
+text = "Main Menu"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect2" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1010878345]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+stretch_mode = 2
+
+[node name="OvaniPlayer" type="Node" parent="." unique_id=2051917833]
+script = ExtResource("4_v8yej")
+QueuedSongs = Array[ExtResource("5_vr6v0")]([ExtResource("6_t1qxt")])
+metadata/_custom_type_script = "uid://c3rbnfoxwam8u"

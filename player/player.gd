@@ -15,6 +15,8 @@ var friction : float = FRICTION_BASE
 var bounce_noise := preload("res://audio/Wood Knock A.wav")
 var damaged_noise := preload("res://audio/Cozy UI B2.wav")
 
+var player_controllable: bool = true
+
 func _physics_process(delta: float) -> void:
 	_handle_slip(delta)
 	_handle_animation()
@@ -42,8 +44,14 @@ func move_and_slide_isometric():
 	
 func _ready() -> void:
 	hitbox.Damaged.connect(_player_damaged)
+	SignalBus.player_died.connect(_on_player_died)
 
 func _player_damaged(damage: int):
+	if !player_controllable:
+		return
 	animation_tree["parameters/OneShot/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
 	AudioPlayer.play_sound(damaged_noise)
 	SignalBus.player_damaged.emit()
+
+func _on_player_died():
+	player_controllable = false

@@ -44,8 +44,11 @@ func spawn_burst(charge_amount):
 	
 func spawn_hurtboxes():
 	while continuous_spawner.emitting:
-		get_tree().root.add_child(SnowSprayHurtbox.spawn_and_shoot(player.global_position, particle_spawn_angle, particle_velocity, 1))
-		await get_tree().create_timer(.1).timeout
+		if player.player_controllable:
+			get_tree().root.add_child(SnowSprayHurtbox.spawn_and_shoot(player.global_position, particle_spawn_angle, particle_velocity, 1))
+			await get_tree().create_timer(.1).timeout
+		else:
+			return
 		
 func spawn_burst_hurtboxes(angle: Vector2, burst_velocity: float):
 	get_tree().root.add_child(SnowSprayHurtbox.spawn_and_shoot(player.global_position, angle.rotated(-.35), burst_velocity, 1))

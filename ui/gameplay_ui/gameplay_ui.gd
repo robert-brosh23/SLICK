@@ -35,7 +35,10 @@ func _lose_life():
 	lives -= 1
 	
 	if lives == 0:
-		print("Game over")
+		SignalBus.num_enemies_retired = enemies_retired # hacky solution to show the number of enemies retired at the end
+		SignalBus.player_died.emit()
+		await get_tree().create_timer(3.0).timeout
+		get_tree().change_scene_to_file("res://ui/menus/game_over/game_over_menu.tscn")
 		
 func _enemy_retired():
 	enemies_retired += 1
@@ -43,14 +46,10 @@ func _enemy_retired():
 	_punch_retired_text()
 	
 func _punch_retired_text():
-	# Kill existing tween (this handles interruption cleanly)
 	if tween and tween.is_running():
 		tween.kill()
-
-	# Instantly grow
 	enemies_retired_label.add_theme_font_size_override("normal_font_size", 36)
 
-	
 	tween = create_tween()
 	tween.tween_interval(.2)
 	tween.tween_property(

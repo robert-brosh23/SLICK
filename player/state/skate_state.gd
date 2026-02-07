@@ -8,6 +8,8 @@ const BRAKE_FRICTION := .95
 @export var player: Player
 
 func physics_update(_delta: float):
+	if !player.player_controllable:
+		return
 	if Input.is_action_just_pressed("space"):
 		player.force = Vector2.ZERO
 		Transitioned.emit(self, "ChargeState")

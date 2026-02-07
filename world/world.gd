@@ -3,4 +3,4 @@ extends Node2D
 
 
 func _ready() -> void:
-	pass
+	SignalBus.reset_enemies_retired()

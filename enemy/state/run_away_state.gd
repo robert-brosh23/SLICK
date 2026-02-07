@@ -7,6 +7,7 @@ var active := false
 var y_move := 0.0
 
 var time_to_live : float
+var jump_tween: Tween
 
 func _ready():
 	var y_move_timer := Timer.new()

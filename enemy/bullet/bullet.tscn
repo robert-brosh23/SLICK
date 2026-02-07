@@ -17,6 +17,11 @@ hurtbox = NodePath("Hurtbox")
 position = Vector2(0, -8)
 texture = ExtResource("1_03u0n")
 
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1819001713]
+scale = Vector2(0.875, 0.5)
+texture = ExtResource("1_03u0n")
+region_rect = Rect2(0, 0, 6, 6)
+
 [node name="Hurtbox" parent="." unique_id=1198781051 instance=ExtResource("2_j6cmb")]
 collision_layer = 32
 collision_mask = 70

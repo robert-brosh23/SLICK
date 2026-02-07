@@ -17,7 +17,7 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_doh7v"]
 radius = 3.0
-height = 11.999945
+height = 20.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sqcg3"]
 radius = 2.9999323
@@ -799,7 +799,6 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_e1rnk"]
 resource_name = "shoot_down"
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -851,7 +850,6 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_1ylor"]
 resource_name = "shoot_down_left"
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -903,7 +901,6 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_a76vu"]
 resource_name = "shoot_down_right"
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -955,7 +952,6 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_0s4x3"]
 resource_name = "shoot_left"
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -1007,7 +1003,6 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_73pyr"]
 resource_name = "shoot_right"
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -1059,7 +1054,6 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_60kjy"]
 resource_name = "shoot_up"
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -1111,7 +1105,6 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_kno77"]
 resource_name = "shoot_up_left"
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -1163,7 +1156,6 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_jcph8"]
 resource_name = "shoot_up_right"
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -1317,7 +1309,7 @@ rotation = -1.5707964
 shape = SubResource("CapsuleShape2D_doh7v")
 
 [node name="StateMatchine" parent="." unique_id=1017248867 node_paths=PackedStringArray("ready_state") instance=ExtResource("4_65nva")]
-ready_state = NodePath("IdleState")
+ready_state = NodePath("MoveRandomState")
 
 [node name="IdleState" parent="StateMatchine" unique_id=1243131995 node_paths=PackedStringArray("enemy", "animation_tree") instance=ExtResource("5_jcdtq")]
 script = ExtResource("6_qaxwg")

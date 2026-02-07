@@ -30,6 +30,8 @@ func enter() -> void:
 	particle_spawner.last_rotation = player.player_rotation.rotation	
 	
 func physics_update(_delta: float):
+	if !player.player_controllable:
+		return
 	charge_amount = clamp(charge_amount + _delta * CHARGE_SPEED, 0.0, MAX_CHARGE)
 	charge_manuverability = clamp(charge_manuverability * CHARGE_MANUVERABILITY_DECAY, CHARGE_MANUVERABILITY_MIN, CHARGE_MANUVERABILITY_MAX)
 	charge_bar.value = charge_amount

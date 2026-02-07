@@ -16,7 +16,7 @@ func enter() -> void:
 		SignalBus.enemy_left_range.emit()
 	
 func await_get_up() -> void:
-	await get_tree().create_timer(3.0).timeout
+	await get_tree().create_timer(1.0).timeout
 	animation_tree.set("parameters/conditions/slip", false)
 	animation_tree.set("parameters/conditions/get_up", true)
 	await animation_tree.animation_finished
