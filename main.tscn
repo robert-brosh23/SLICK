@@ -4,13 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://b0ehf1seelnv6" path="res://world/world.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://bewgdmlf3qaqj" path="res://ui/gameplay_ui/gameplay_ui.tscn" id="2_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://c3buy7jdemmub" path="res://visual/snow_particle_emitter/snow_particle_emitter.tscn" id="3_h2yge"]
-[ext_resource type="Script" uid="uid://c3rbnfoxwam8u" path="res://OvaniPlugin/OvaniPlayer.gd" id="5_5vw27"]
-[ext_resource type="Script" uid="uid://6wkwid8imv3b" path="res://OvaniPlugin/OvaniSong.gd" id="6_kek77"]
-[ext_resource type="Resource" uid="uid://byjta776kkthu" path="res://audio/Blizzard (RT 2.419)/Blizzard.tres" id="7_4c57u"]
 
-[node name="Main" type="Node2D" unique_id=2075224001 node_paths=PackedStringArray("ovani_player")]
+[node name="Main" type="Node2D" unique_id=2075224001]
 script = ExtResource("1_272bh")
-ovani_player = NodePath("OvaniPlayer")
 
 [node name="World" parent="." unique_id=1430748571 instance=ExtResource("1_ig7tw")]
 
@@ -22,8 +18,3 @@ position = Vector2(-7, -1085)
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=630061963]
 
 [node name="GameplayUI" parent="CanvasLayer" unique_id=84776083 instance=ExtResource("2_0xm2m")]
-
-[node name="OvaniPlayer" type="Node" parent="." unique_id=1415799005]
-script = ExtResource("5_5vw27")
-QueuedSongs = Array[ExtResource("6_kek77")]([ExtResource("7_4c57u")])
-metadata/_custom_type_script = "uid://c3rbnfoxwam8u"

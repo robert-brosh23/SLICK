@@ -3,9 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://dwk8pirrt2hns" path="res://sprites/title_screen.png" id="1_hgubh"]
 [ext_resource type="Script" uid="uid://bs6acpdgaimlp" path="res://ui/menus/tile_screen/title_screen_menu.gd" id="1_ytgpn"]
 [ext_resource type="Texture2D" uid="uid://y4dp6qsu6sqc" path="res://sprites/selection_arrow.png" id="3_yp47l"]
-[ext_resource type="Script" uid="uid://c3rbnfoxwam8u" path="res://OvaniPlugin/OvaniPlayer.gd" id="4_manil"]
-[ext_resource type="Script" uid="uid://6wkwid8imv3b" path="res://OvaniPlugin/OvaniSong.gd" id="5_4u82v"]
-[ext_resource type="Resource" uid="uid://bbjp5xw1ft82y" path="res://audio/Moon Eyes (RT 3.57)/moon_eyes.tres" id="6_n7lox"]
 [ext_resource type="FontFile" uid="uid://b5jqc46nd8338" path="res://util/fonts/m6x11.ttf" id="7_n7lox"]
 [ext_resource type="Texture2D" uid="uid://bvrr0scx1mhdw" path="res://sprites/volume-knob.png" id="8_lycrw"]
 
@@ -67,7 +64,7 @@ border_width_right = 2
 border_width_bottom = 2
 border_color = Color(0.019607844, 0.29411766, 0.5176471, 1)
 
-[node name="TitleScreenMenu" type="Control" unique_id=1322187771 node_paths=PackedStringArray("ovani_player", "animation_player", "title", "title_options_parent", "options_menu", "options_options_parent", "master_slider", "music_slider", "sfx_slider", "credits_menu", "credits_options_parent", "tutorial")]
+[node name="TitleScreenMenu" type="Control" unique_id=1322187771 node_paths=PackedStringArray("animation_player", "title", "title_options_parent", "options_menu", "options_options_parent", "master_slider", "music_slider", "sfx_slider", "credits_menu", "credits_options_parent", "tutorial")]
 texture_filter = 1
 layout_mode = 3
 anchors_preset = 15
@@ -76,10 +73,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ytgpn")
-ovani_player = NodePath("OvaniPlayer")
 animation_player = NodePath("AnimationPlayer")
 title = NodePath("Title")
-title_options_parent = NodePath("Title/VBoxContainer")
+title_options_parent = NodePath("Title/TitleParent")
 options_menu = NodePath("Options")
 options_options_parent = NodePath("Options/VBoxContainer")
 master_slider = NodePath("Options/VBoxContainer2/GridContainer/PanelContainer/MarginContainer/HSlider")
@@ -88,12 +84,6 @@ sfx_slider = NodePath("Options/VBoxContainer2/GridContainer/PanelContainer3/Marg
 credits_menu = NodePath("Credits")
 credits_options_parent = NodePath("Credits/VBoxContainer")
 tutorial = NodePath("Tutorial")
-
-[node name="OvaniPlayer" type="Node" parent="." unique_id=612447657]
-script = ExtResource("4_manil")
-QueuedSongs = Array[ExtResource("5_4u82v")]([ExtResource("6_n7lox")])
-Intensity = 1.0
-metadata/_custom_type_script = "uid://c3rbnfoxwam8u"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=622108831]
 libraries/ = SubResource("AnimationLibrary_k2qvs")
@@ -124,32 +114,43 @@ size_flags_vertical = 0
 texture = ExtResource("3_yp47l")
 stretch_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Title" unique_id=1162028847]
-layout_mode = 0
+[node name="TitleParent" type="Control" parent="Title" unique_id=1702519693]
+anchors_preset = 0
 offset_left = 443.0
 offset_top = 299.0
 offset_right = 483.0
 offset_bottom = 379.0
-theme_override_constants/separation = 40
 
-[node name="Option1Location" type="Control" parent="Title/VBoxContainer" unique_id=707559524]
-layout_mode = 2
+[node name="Option1Location" type="Control" parent="Title/TitleParent" unique_id=707559524]
+anchors_preset = 0
+offset_left = -100.0
+offset_top = 94.0
+offset_right = -60.0
+offset_bottom = 95.0
 
-[node name="Option2Location" type="Control" parent="Title/VBoxContainer" unique_id=1793018825]
-layout_mode = 2
+[node name="Option2Location" type="Control" parent="Title/TitleParent" unique_id=1793018825]
+anchors_preset = 0
+offset_left = -442.0
+offset_top = -254.0
+offset_right = -402.0
+offset_bottom = -254.0
 
-[node name="Option3Location" type="Control" parent="Title/VBoxContainer" unique_id=855927080]
-layout_mode = 2
+[node name="Option3Location" type="Control" parent="Title/TitleParent" unique_id=855927080]
+anchors_preset = 0
+offset_left = -285.0
+offset_top = -205.0
+offset_right = -245.0
+offset_bottom = -205.0
 
 [node name="Label" type="Label" parent="Title" unique_id=317737525]
 layout_mode = 0
-offset_left = 319.0
-offset_top = 216.0
-offset_right = 625.0
-offset_bottom = 244.0
+offset_left = 323.0
+offset_top = 35.0
+offset_right = 629.0
+offset_bottom = 63.0
 theme_override_colors/font_color = Color(0.84313726, 0.2901961, 0.78039217, 1)
 theme_override_fonts/font = ExtResource("7_n7lox")
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 32
 text = "Press <Space> to choose"
 horizontal_alignment = 1
 
@@ -183,10 +184,10 @@ stretch_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Options" unique_id=1736859992]
 layout_mode = 0
-offset_left = 293.0
-offset_top = 303.0
-offset_right = 333.0
-offset_bottom = 423.0
+offset_left = 264.0
+offset_top = 304.0
+offset_right = 304.0
+offset_bottom = 424.0
 theme_override_constants/separation = 40
 
 [node name="Option1Location" type="Control" parent="Options/VBoxContainer" unique_id=996859370]
@@ -361,9 +362,9 @@ stretch_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Credits" unique_id=101083605]
 layout_mode = 0
-offset_left = 281.0
+offset_left = 248.0
 offset_top = 312.0
-offset_right = 321.0
+offset_right = 288.0
 offset_bottom = 392.0
 theme_override_constants/separation = 40
 
@@ -432,12 +433,13 @@ theme_override_colors/font_color = Color(0.32941177, 0.80784315, 0.654902, 1)
 theme_override_fonts/font = ExtResource("7_n7lox")
 theme_override_font_sizes/font_size = 32
 text = "Hold <Spacebar> to boost
-Hold ← → to steer
+Hold left or right to steer
 
 Hold Boost while steering to drift 
 and kick up snow into enemies
 
-How many S.N.O. will you make retire?"
+Crashing into enemies is ineffective!
+Use the snow."
 horizontal_alignment = 1
 
 [node name="Label3" type="Label" parent="Tutorial/MarginContainer/VBoxContainer" unique_id=982433206]

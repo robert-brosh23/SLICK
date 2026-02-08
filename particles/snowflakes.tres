@@ -1,0 +1,15 @@
+[gd_resource type="ParticleProcessMaterial" format=3 uid="uid://dxmxmbkqucfjp"]
+
+[resource]
+emission_shape_offset = Vector3(0, 0, 10)
+emission_shape = 3
+emission_box_extents = Vector3(2500, 0, -5)
+gravity = Vector3(-40, 90, 0)
+radial_accel_min = -8.000002
+radial_accel_max = -2.2351742e-06
+scale_min = 0.79999995
+scale_max = 1.5
+turbulence_enabled = true
+turbulence_noise_speed_random = 0.0
+turbulence_influence_min = 0.020000001
+turbulence_influence_max = 0.080000006

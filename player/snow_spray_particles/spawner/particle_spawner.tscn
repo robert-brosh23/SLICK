@@ -1,23 +1,7 @@
 [gd_scene format=3 uid="uid://3a7rvhu374cn"]
 
 [ext_resource type="Script" uid="uid://bsd4fxtgkkt0m" path="res://player/snow_spray_particles/spawner/particle_spawner.gd" id="1_yjx7d"]
-
-[sub_resource type="Gradient" id="Gradient_yjx7d"]
-offsets = PackedFloat32Array(0.9892473, 1)
-colors = PackedColorArray(0.16862746, 0.6431373, 0.6509804, 1, 1, 1, 1, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_v25tc"]
-gradient = SubResource("Gradient_yjx7d")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yjx7d"]
-particle_flag_disable_z = true
-spread = 30.0
-initial_velocity_min = 80.0
-initial_velocity_max = 107.36
-gravity = Vector3(0, 0, 0)
-scale_min = 3.0
-scale_max = 6.0
-color_ramp = SubResource("GradientTexture1D_v25tc")
+[ext_resource type="Material" uid="uid://cmwsloh2v7bym" path="res://particles/snow_continuous.tres" id="2_v25tc"]
 
 [node name="ParticleSpawner" type="Node2D" unique_id=1156803299 node_paths=PackedStringArray("continuous_spawner")]
 script = ExtResource("1_yjx7d")
@@ -26,4 +10,4 @@ continuous_spawner = NodePath("ContinuousSpawner")
 [node name="ContinuousSpawner" type="GPUParticles2D" parent="." unique_id=201784248]
 emitting = false
 amount = 90
-process_material = SubResource("ParticleProcessMaterial_yjx7d")
+process_material = ExtResource("2_v25tc")

@@ -25,6 +25,7 @@ func play_sound(sound: Resource, vary_pitch := true, bus: Bus = Bus.SFX, loop :=
 		Bus.SFX:
 			audioPlayer.bus = "Sfx"
 	add_child(audioPlayer)
+	audioPlayer.get
 	audioPlayer.finished.connect(func():
 		if loop:
 			play_sound(sound, vary_pitch, bus, loop)

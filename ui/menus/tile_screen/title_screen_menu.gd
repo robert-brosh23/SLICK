@@ -1,7 +1,6 @@
 class_name TitleScreenMenu
 extends Control
 
-@export var ovani_player: OvaniPlayer
 @export var animation_player: AnimationPlayer
 
 var options_index = 0
@@ -25,10 +24,16 @@ enum Menu {TITLE, OPTIONS, CREDITS, TUTORIAL}
 
 @export var tutorial: Control
 
+var volume_tween : Tween
+
+var audio_stream_player: AudioStreamPlayer
+var song := preload("res://audio/Moon Eyes Main.wav")
+
 func _ready():
 	_enter_title()
-	ovani_player.Volume = -40.0
-	ovani_player.FadeVolume(-5.0, 0.25)
+	audio_stream_player = AudioPlayer.play_sound(song, false, AudioPlayer.Bus.MUSIC, false)
+	audio_stream_player.volume_db = -40.0
+	tween_volume(audio_stream_player, -5.0, 0.5)
 	_reset_sliders()
 
 func _process(delta: float) -> void:
@@ -38,6 +43,11 @@ func _process(delta: float) -> void:
 		_handle_up()
 	if Input.is_action_just_pressed("space"):
 		_handle_space()
+		
+	if audio_stream_player && audio_stream_player.playing:
+		if audio_stream_player.get_playback_position() >= audio_stream_player.stream.get_length() - 3.57:
+			audio_stream_player.queue_free()
+			audio_stream_player = AudioPlayer.play_sound(song, false, AudioPlayer.Bus.MUSIC, false)
 
 func _enter_title():
 	arrow = $Title/Arrow
@@ -79,15 +89,20 @@ func _enter_tutorial():
 	tutorial.visible = true
 	
 func _exit_tutorial():
+	if audio_stream_player:
+		tween_volume(audio_stream_player, -80.0, 0.2)
 	tutorial.visible = false
 
 func _move_arrow_to(button: Control):
+	arrow.global_position.x = button.global_position.x
 	arrow.global_position.y = button.global_position.y + button.size.y * 0.5 - arrow.size.y * 0.5
 
 func _handle_up():
 	match current_menu:
 		Menu.TITLE:
 			options_index -= 1
+			if options_index == -1:
+				options_index = 2
 			options_index = options_index % options.size()
 			_move_arrow_to(options[options_index])
 
@@ -105,10 +120,10 @@ func _handle_space():
 				0:
 					_exit_title()
 					_enter_tutorial()
-				1:
+				2:
 					_exit_title()
 					_enter_options()
-				2:
+				1:
 					_exit_title()
 					_enter_credits()
 		Menu.OPTIONS:
@@ -118,6 +133,8 @@ func _handle_space():
 			_exit_credits()
 			_enter_title()
 		Menu.TUTORIAL:
+			_exit_tutorial()
+			audio_stream_player.queue_free()
 			get_tree().change_scene_to_file("res://main.tscn")
 			
 
@@ -144,3 +161,15 @@ func _reset_sliders():
 	sfx_slider.value = AudioPlayer.sfx_volume
 	_on_h_slider_value_changed_sfx(sfx_slider.value)
 	
+
+func tween_volume(player: AudioStreamPlayer, target_db: float, time: float):
+	if volume_tween and volume_tween.is_running():
+		volume_tween.kill()
+
+	volume_tween = create_tween()
+	volume_tween.tween_property(
+		player,
+		"volume_db",
+		target_db,
+		time
+	).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)

@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://d3b1iqkhce4xt"]
+
+[ext_resource type="Script" uid="uid://dnsm27iq087hy" path="res://particles/particles_fx_singleton.gd" id="1_g4ssr"]
+[ext_resource type="Material" uid="uid://ogxa75nwmnfc" path="res://particles/burst_snow.tres" id="2_5vwe4"]
+[ext_resource type="Material" uid="uid://dxmxmbkqucfjp" path="res://particles/snowflakes.tres" id="3_0m2fo"]
+[ext_resource type="Material" uid="uid://cmwsloh2v7bym" path="res://particles/snow_continuous.tres" id="4_14yl5"]
+
+[node name="ParticlesFxSingleton" type="Node2D" unique_id=2044423265]
+script = ExtResource("1_g4ssr")
+every_effect = Array[ParticleProcessMaterial]([ExtResource("2_5vwe4"), ExtResource("3_0m2fo"), ExtResource("4_14yl5")])
